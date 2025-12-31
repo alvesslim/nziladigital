@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 export function HeroSection() {
   const openWhatsApp = () => {
     window.open(
-      'https://wa.me/5511999999999?text=Olá! Gostaria de saber mais sobre os serviços da Nzila Digital.',
+      'https://wa.me/244946554601?text=Olá! Gostaria de saber mais sobre os serviços da Nzila Digital.',
       '_blank'
     );
   };
@@ -75,7 +75,7 @@ export function HeroSection() {
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-nzila-gold/30 bg-nzila-gold/10 backdrop-blur-sm mb-8"
           >
             <span className="w-2 h-2 rounded-full bg-nzila-gold animate-pulse" />
-            <span className="text-sm text-primary-foreground/80">Orlando Correia</span>
+            <span className="text-sm text-primary-foreground/80">Soluções Digitais & Educação</span>
           </motion.div>
 
           {/* Headline */}

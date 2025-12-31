@@ -78,7 +78,7 @@ export function EducationSection() {
               size="lg"
               onClick={() => {
                 window.open(
-                  'https://wa.me/5511999999999?text=Olá! Gostaria de saber mais sobre as formações da Nzila Digital.',
+                  'https://wa.me/244946554601?text=Olá! Gostaria de saber mais sobre as formações da Nzila Digital.',
                   '_blank'
                 );
               }}

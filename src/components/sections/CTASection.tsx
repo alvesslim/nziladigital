@@ -10,7 +10,7 @@ export function CTASection() {
 
   const openWhatsApp = () => {
     window.open(
-      'https://wa.me/5511999999999?text=Olá! Gostaria de saber mais sobre os serviços da Nzila Digital.',
+      'https://wa.me/244946554601?text=Olá! Gostaria de saber mais sobre os serviços da Nzila Digital.',
       '_blank'
     );
   };

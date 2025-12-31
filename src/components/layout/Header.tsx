@@ -81,7 +81,7 @@ export function Header() {
             <Button
               variant="gold"
               size="sm"
-              onClick={() => window.open('https://wa.me/5511999999999?text=Olá! Gostaria de saber mais sobre os serviços da Nzila Digital.', '_blank')}
+              onClick={() => window.open('https://wa.me/244946554601?text=Olá! Gostaria de saber mais sobre os serviços da Nzila Digital.', '_blank')}
             >
               WhatsApp
             </Button>
@@ -127,7 +127,7 @@ export function Header() {
                 <Button
                   variant="gold"
                   className="mt-2"
-                  onClick={() => window.open('https://wa.me/5511999999999?text=Olá! Gostaria de saber mais sobre os serviços da Nzila Digital.', '_blank')}
+                  onClick={() => window.open('https://wa.me/244946554601?text=Olá! Gostaria de saber mais sobre os serviços da Nzila Digital.', '_blank')}
                 >
                   Falar no WhatsApp
                 </Button>

@@ -52,7 +52,7 @@ export function HeroSection() {
             ease: 'easeInOut',
           }}
         />
-        
+
         {/* Grid Pattern */}
         <div
           className="absolute inset-0 opacity-[0.03]"
@@ -75,7 +75,7 @@ export function HeroSection() {
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-nzila-gold/30 bg-nzila-gold/10 backdrop-blur-sm mb-8"
           >
             <span className="w-2 h-2 rounded-full bg-nzila-gold animate-pulse" />
-            <span className="text-sm text-primary-foreground/80">Soluções Digitais & Educação</span>
+            <span className="text-sm text-primary-foreground/80">Orlando Correia</span>
           </motion.div>
 
           {/* Headline */}

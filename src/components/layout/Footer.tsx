@@ -25,7 +25,7 @@ export function Footer() {
               />
             </div>
             <p className="text-primary-foreground/70 text-sm leading-relaxed">
-              Soluções Digitais & Educação
+              Orlando Correia
               <br />
               Estratégia, tecnologia e conhecimento para o seu crescimento digital.
             </p>
@@ -74,7 +74,7 @@ export function Footer() {
               © {currentYear} Nzila Digital. Todos os direitos reservados.
             </p>
             <p className="text-sm text-primary-foreground/50">
-              Soluções Digitais & Educação
+              Orlando Correia
             </p>
           </div>
         </div>

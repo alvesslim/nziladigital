@@ -1,41 +1,40 @@
-import { motion } from 'framer-motion';
-import { useInView } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { ExternalLink, ArrowUpRight } from 'lucide-react';
+import { ExternalLink, ArrowUpRight, FolderOpen } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const projects = [
   {
     id: 1,
-    title: 'Projeto E-commerce',
-    category: 'Website',
-    description: 'Loja virtual completa com integração de pagamentos e gestão de produtos.',
-    image: null,
-    link: '#',
+    title: 'E-commerce Premium',
+    category: 'Desenvolvimento Web',
+    description: 'Plataforma de vendas high-ticket com experiência de compra imersiva e checkout otimizado.',
+    tags: ['Next.js', 'Stripe', 'UI/UX'],
+    gradient: 'from-blue-600 to-indigo-900'
   },
   {
     id: 2,
-    title: 'Landing Page SaaS',
-    category: 'Landing Page',
-    description: 'Página de conversão para startup de tecnologia com alta taxa de conversão.',
-    image: null,
-    link: '#',
+    title: 'SaaS Dashboard',
+    category: 'Product Design',
+    description: 'Interface administrativa para gestão de frota com análise de dados em tempo real.',
+    tags: ['React', 'D3.js', 'Tailwind'],
+    gradient: 'from-emerald-600 to-teal-900'
   },
   {
     id: 3,
-    title: 'Identidade Digital',
-    category: 'Branding',
-    description: 'Estruturação completa de presença digital para consultoria empresarial.',
-    image: null,
-    link: '#',
+    title: 'Campanha Black Friday',
+    category: 'Marketing de Performance',
+    description: 'Estratégia omnicanal que gerou 800% de ROAS para varejista de moda.',
+    tags: ['Meta Ads', 'Google Ads', 'Strategy'],
+    gradient: 'from-purple-600 to-fuchsia-900'
   },
   {
     id: 4,
-    title: 'Campanha de Tráfego',
-    category: 'Marketing',
-    description: 'Gestão de tráfego pago com ROI de 400% em 3 meses de operação.',
-    image: null,
-    link: '#',
+    title: 'Rebranding Corporativo',
+    category: 'Branding',
+    description: 'Redesign completo de identidade visual para consultoria financeira internacional.',
+    tags: ['Brand Identity', 'Guidelines', 'Social'],
+    gradient: 'from-amber-500 to-orange-900'
   },
 ];
 
@@ -44,90 +43,87 @@ export function PortfolioSection() {
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <section id="portfolio" className="bg-muted section-padding" ref={ref}>
-      <div className="container-max">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-center max-w-3xl mx-auto mb-16"
-        >
-          <span className="inline-block text-nzila-gold font-medium text-sm tracking-wider uppercase mb-4">
-            Portfólio
-          </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-6">
-            Projetos que Geram Resultados
-          </h2>
-          <p className="text-lg text-muted-foreground leading-relaxed">
-            Conheça alguns dos projetos que desenvolvemos para nossos clientes.
-            Cada solução é pensada estrategicamente para gerar crescimento real.
-          </p>
-        </motion.div>
+    <section id="portfolio" className="relative bg-background py-32 overflow-hidden" ref={ref}>
+      {/* Background Strips */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-0 left-1/4 w-[1px] h-full bg-white/5" />
+        <div className="absolute top-0 left-2/4 w-[1px] h-full bg-white/5" />
+        <div className="absolute top-0 left-3/4 w-[1px] h-full bg-white/5" />
+      </div>
 
-        {/* Projects Grid */}
-        <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
+      <div className="container-max relative z-10">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-8">
+            <motion.div
+                initial={{ opacity: 0, x: -30 }}
+                animate={isInView ? { opacity: 1, x: 0 } : {}}
+                transition={{ duration: 0.6 }}
+            >
+                <div className="flex items-center gap-3 mb-4">
+                    <FolderOpen size={20} className="text-nzila-gold" />
+                    <span className="text-nzila-gold font-bold tracking-[0.2em] text-xs uppercase">
+                        Selected Works
+                    </span>
+                </div>
+                <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white max-w-2xl">
+                    Onde a estratégia encontra 
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-nzila-gold to-white"> a arte digital.</span>
+                </h2>
+            </motion.div>
+
+            <motion.div
+                initial={{ opacity: 0, x: 30 }}
+                animate={isInView ? { opacity: 1, x: 0 } : {}}
+                transition={{ duration: 0.6, delay: 0.2 }}
+            >
+                <Button variant="outline" className="text-white border-white/20 hover:bg-white/10 hover:text-white rounded-full px-8">
+                    Ver Todos os Projetos <ArrowUpRight className="ml-2" size={16} />
+                </Button>
+            </motion.div>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-8">
           {projects.map((project, index) => (
             <motion.div
               key={project.id}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 50 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="group"
+              transition={{ duration: 0.6, delay: index * 0.15 }}
+              className="group relative"
             >
-              <div className="bg-card rounded-2xl overflow-hidden border border-border shadow-soft hover:shadow-elevated transition-all duration-300 hover:-translate-y-1">
-                {/* Image Placeholder */}
-                <div className="aspect-video relative overflow-hidden">
-                  <div
-                    className="absolute inset-0 flex items-center justify-center"
-                    style={{
-                      background: `linear-gradient(135deg, hsl(215 85% ${20 + index * 5}%) 0%, hsl(42 70% ${45 + index * 5}%) 100%)`,
-                    }}
-                  >
-                    <div className="text-center text-primary-foreground p-6">
-                      <div className="w-16 h-16 rounded-xl bg-primary-foreground/10 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
-                        <ExternalLink size={24} />
-                      </div>
-                      <p className="text-sm text-primary-foreground/70">Imagem do projeto</p>
+              <div className="relative aspect-[16/10] rounded-2xl overflow-hidden bg-card/10 border border-white/10">
+                {/* Image Placeholder Gradient */}
+                <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-50 transition-transform duration-700 group-hover:scale-105`} />
+                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-300" />
+                
+                {/* Content Overlay */}
+                <div className="absolute inset-0 p-8 flex flex-col justify-between">
+                    <div className="flex justify-end">
+                        <div className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center text-white opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
+                            <ExternalLink size={20} />
+                        </div>
                     </div>
-                  </div>
-                  {/* Category Badge */}
-                  <span className="absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-medium bg-nzila-gold text-nzila-dark backdrop-blur-sm">
-                    {project.category}
-                  </span>
-                </div>
-
-                {/* Content */}
-                <div className="p-6">
-                  <h3 className="text-xl font-bold text-foreground mb-2 group-hover:text-nzila-gold transition-colors">
-                    {project.title}
-                  </h3>
-                  <p className="text-muted-foreground mb-4">{project.description}</p>
-                  <Button variant="ghost" size="sm" className="group/btn -ml-2 hover:text-nzila-gold">
-                    Ver projeto
-                    <ArrowUpRight className="ml-1 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" size={16} />
-                  </Button>
+                
+                    <div>
+                        <div className="flex flex-wrap gap-2 mb-4 opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 delay-100">
+                            {project.tags.map(tag => (
+                                <span key={tag} className="text-xs font-medium text-white/80 bg-black/30 backdrop-blur-sm px-3 py-1 rounded-full border border-white/10">
+                                    {tag}
+                                </span>
+                            ))}
+                        </div>
+                        <h3 className="text-3xl font-display font-bold text-white mb-2 translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                            {project.title}
+                        </h3>
+                        <p className="text-white/70 max-w-md line-clamp-2">
+                            {project.description}
+                        </p>
+                    </div>
                 </div>
               </div>
             </motion.div>
           ))}
         </div>
 
-        {/* Coming Soon Notice */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.5 }}
-          className="mt-12 text-center"
-        >
-          <p className="text-muted-foreground">
-            Novos projetos sendo adicionados constantemente.{' '}
-            <a href="#contact" className="text-nzila-gold hover:underline">
-              Entre em contato
-            </a>{' '}
-            para saber mais.
-          </p>
-        </motion.div>
       </div>
     </section>
   );

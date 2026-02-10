@@ -1,7 +1,6 @@
-import { motion } from 'framer-motion';
-import { useInView } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { MessageCircle, ArrowRight } from 'lucide-react';
+import { MessageCircle, ArrowRight, Zap } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 export function CTASection() {
@@ -18,95 +17,59 @@ export function CTASection() {
   return (
     <section
       id="contact"
-      className="section-padding relative overflow-hidden"
+      className="relative py-32 overflow-hidden"
       ref={ref}
-      style={{
-        background: 'linear-gradient(135deg, hsl(215 85% 22%) 0%, hsl(220 40% 10%) 50%, hsl(42 70% 30%) 100%)',
-      }}
     >
-      {/* Background Elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        <motion.div
-          className="absolute -top-40 -right-40 w-96 h-96 rounded-full opacity-25"
-          style={{
-            background: 'radial-gradient(circle, hsl(42 90% 55%) 0%, transparent 70%)',
-          }}
-          animate={{
-            scale: [1, 1.1, 1],
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: 'easeInOut',
-          }}
-        />
-        <motion.div
-          className="absolute -bottom-40 -left-40 w-[500px] h-[500px] rounded-full opacity-15"
-          style={{
-            background: 'radial-gradient(circle, hsl(215 85% 45%) 0%, transparent 70%)',
-          }}
-          animate={{
-            scale: [1, 1.15, 1],
-          }}
-          transition={{
-            duration: 10,
-            repeat: Infinity,
-            ease: 'easeInOut',
-          }}
-        />
+      {/* Dynamic Gradient Background */}
+      <div className="absolute inset-0 bg-background">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-nzila-blue/10 via-background to-background" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-nzila-gold/5 blur-[120px] rounded-full pointer-events-none" />
       </div>
 
       <div className="container-max relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="max-w-3xl mx-auto text-center"
-        >
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={isInView ? { opacity: 1, scale: 1 } : {}}
-            transition={{ duration: 0.5 }}
-            className="w-16 h-16 rounded-2xl bg-nzila-gold/20 flex items-center justify-center mx-auto mb-8"
-          >
-            <MessageCircle className="text-nzila-gold" size={28} />
-          </motion.div>
+        <div className="relative rounded-3xl overflow-hidden border border-white/10 bg-white/5 backdrop-blur-lg p-12 md:p-24 text-center">
+            
+            {/* Inner Glow */}
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[2px] bg-gradient-to-r from-transparent via-nzila-gold/50 to-transparent" />
 
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-primary-foreground mb-6">
-            Pronto para fortalecer sua presença digital?
-          </h2>
-          <p className="text-xl text-primary-foreground/70 mb-10 leading-relaxed">
-            Vamos conversar sobre como podemos ajudar você ou sua empresa a crescer
-            de forma estratégica no ambiente online.
-          </p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center"
-          >
-            <Button
-              variant="gold"
-              size="xl"
-              onClick={openWhatsApp}
-              className="group"
+            <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.6 }}
+                className="max-w-4xl mx-auto"
             >
-              <MessageCircle className="mr-2" size={20} />
-              Falar com a Nzila Digital
-              <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={18} />
-            </Button>
-          </motion.div>
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-nzila-gold/10 border border-nzila-gold/20 text-nzila-gold text-sm font-bold uppercase tracking-widest mb-8">
+                    <Zap size={16} fill="currentColor" />
+                    Vamos Escalar?
+                </div>
 
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={isInView ? { opacity: 1 } : {}}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="mt-8 text-sm text-primary-foreground/50"
-          >
-            Resposta rápida • Sem compromisso • Atendimento personalizado
-          </motion.p>
-        </motion.div>
+                <h2 className="text-4xl md:text-5xl lg:text-7xl font-display font-bold text-white mb-8 leading-tight">
+                    Sua marca merece <br />
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-nzila-gold to-white drop-shadow-sm">
+                        estar no topo.
+                    </span>
+                </h2>
+                
+                <p className="text-xl text-muted-foreground mb-12 max-w-2xl mx-auto leading-relaxed">
+                    Não espere o futuro chegar. Construa sua autoridade digital hoje com quem entende de crescimento real.
+                </p>
+
+                <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+                    <Button
+                        className="btn-gold h-auto text-lg px-10 py-5 rounded-full shadow-[0_0_40px_-10px_rgba(234,179,8,0.5)] hover:shadow-[0_0_60px_-10px_rgba(234,179,8,0.6)] w-full sm:w-auto"
+                        onClick={openWhatsApp}
+                    >
+                        <MessageCircle className="mr-3" size={24} />
+                        Iniciar Projeto Agora
+                        <ArrowRight className="ml-3 group-hover:translate-x-1 transition-transform" size={20} />
+                    </Button>
+                </div>
+                
+                <p className="mt-8 text-sm text-white/30 tracking-wide font-light">
+                    Atendimento exclusivo • Vagas limitadas para consultoria
+                </p>
+            </motion.div>
+        </div>
       </div>
     </section>
   );

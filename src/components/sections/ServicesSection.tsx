@@ -1,39 +1,51 @@
-import { motion } from 'framer-motion';
-import { useInView } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { Globe, Zap, Share2, TrendingUp, Layers } from 'lucide-react';
+import { Globe, Zap, Share2, TrendingUp, Layers, Code, ArrowRight } from 'lucide-react';
+import { cn } from '@/lib/utils'; // Assuming standard shadcn util exists, if not I'll inline the logic
 
 const services = [
   {
     icon: Globe,
-    title: 'Criação de Websites',
-    description: 'Websites e páginas profissionais que transmitem credibilidade e convertem visitantes em clientes.',
-    features: ['Design responsivo', 'SEO otimizado', 'Alta performance'],
+    title: 'Web Design & Dev',
+    description: 'Websites de alta performance que convertem visitantes em clientes fiéis. Design responsivo e SEO nativo.',
+    features: ['Next.js / React', 'SEO Avançado', 'UX/UI Premium'],
+    color: 'text-blue-400'
   },
   {
     icon: Zap,
     title: 'Landing Pages',
-    description: 'Páginas focadas em conversão, estrategicamente desenvolvidas para gerar resultados mensuráveis.',
-    features: ['Alta conversão', 'Testes A/B', 'Copywriting estratégico'],
+    description: 'Páginas de vendas projetadas com psicologia de consumo para maximizar seu ROAS (Retorno sobre Anúncio).',
+    features: ['Copywriting Persuasivo', 'A/B Testing', 'Velocidade Extrema'],
+    color: 'text-amber-400'
   },
   {
     icon: Share2,
-    title: 'Gestão de Mídias Sociais',
-    description: 'Gestão estratégica de redes sociais para construir autoridade e engajamento.',
-    features: ['Estratégia de conteúdo', 'Calendário editorial', 'Análise de métricas'],
+    title: 'Gestão de Tráfego',
+    description: 'Estratégias de anúncios pagos no Meta e Google para escalar suas vendas de forma previsível.',
+    features: ['Gestão de Orçamento', 'Remarketing', 'Relatórios Mensais'],
+    color: 'text-emerald-400'
   },
   {
     icon: TrendingUp,
-    title: 'Tráfego Pago',
-    description: 'Configuração e gestão de campanhas de anúncios para atrair o público certo.',
-    features: ['Google Ads', 'Meta Ads', 'Otimização de ROI'],
+    title: 'Social Media',
+    description: 'Gestão de marca e comunidade para transformar seguidores em defensores da sua marca.',
+    features: ['Conteúdo Viral', 'Design de Feed', 'Gestão de Crise'],
+    color: 'text-purple-400'
   },
   {
     icon: Layers,
-    title: 'Estruturação Digital',
-    description: 'Estruturação completa da presença digital do seu negócio, do planejamento à execução.',
-    features: ['Diagnóstico completo', 'Plano estratégico', 'Implementação'],
+    title: 'Consultoria Digital',
+    description: 'Diagnóstico completo do seu negócio para identificar gargalos e oportunidades de crescimento.',
+    features: ['Roadmap Digital', 'Mentoria', 'Auditoria Técnica'],
+    color: 'text-rose-400'
   },
+  {
+    icon: Code,
+    title: 'Sistemas Web',
+    description: 'Desenvolvimento de dashboards, CRMs e aplicações personalizadas para automatizar sua operação.',
+    features: ['SaaS', 'Automação', 'APIs'],
+    color: 'text-cyan-400'
+  }
 ];
 
 export function ServicesSection() {
@@ -43,65 +55,67 @@ export function ServicesSection() {
   return (
     <section
       id="services"
-      className="section-padding relative overflow-hidden"
+      className="relative py-32 bg-background overflow-hidden"
       ref={ref}
-      style={{
-        background: 'linear-gradient(180deg, hsl(220 40% 8%) 0%, hsl(215 60% 12%) 100%)',
-      }}
     >
-      {/* Background Pattern */}
-      <div
-        className="absolute inset-0 opacity-[0.02]"
-        style={{
-          backgroundImage: `radial-gradient(circle at 1px 1px, hsl(42 90% 55%) 1px, transparent 0)`,
-          backgroundSize: '40px 40px',
-        }}
-      />
-
+      {/* Dynamic Background */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-nzila-blue/10 via-background to-background pointer-events-none" />
+      
       <div className="container-max relative z-10">
-        {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-center max-w-3xl mx-auto mb-16"
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-20"
         >
-          <span className="inline-block text-nzila-gold font-medium text-sm tracking-wider uppercase mb-4">
-            Nossos Serviços
+          <span className="text-nzila-gold font-bold tracking-[0.2em] text-xs uppercase mb-4 block">
+            Nossa Expertise
           </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-primary-foreground mb-6">
-            Soluções Digitais Completas
+          <h2 className="text-5xl md:text-6xl font-display font-bold text-white mb-6">
+            Soluções para <span className="text-transparent bg-clip-text bg-gradient-to-r from-nzila-gold to-white">Escalar</span>
           </h2>
-          <p className="text-lg text-primary-foreground/70 leading-relaxed">
-            Do planejamento à execução, oferecemos serviços integrados para impulsionar sua presença digital.
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto font-light">
+            Da concepção à implementação, entregamos tecnologia de ponta com design de classe mundial.
           </p>
         </motion.div>
 
-        {/* Services Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {services.map((service, index) => (
             <motion.div
               key={service.title}
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="group"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={isInView ? { opacity: 1, scale: 1 } : {}}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              whileHover={{ y: -5 }}
+              className="group relative h-full"
             >
-              <div className="bg-primary-foreground/5 backdrop-blur-sm rounded-2xl p-6 h-full border border-primary-foreground/10 hover:border-nzila-gold/30 hover:bg-primary-foreground/10 transition-all duration-300">
-                <div className="w-12 h-12 rounded-xl bg-nzila-gold/20 flex items-center justify-center mb-5 group-hover:bg-nzila-gold group-hover:scale-110 transition-all duration-300">
-                  <service.icon className="text-nzila-gold group-hover:text-nzila-dark" size={22} />
+                {/* Glow Effect */}
+                <div className="absolute inset-0 bg-gradient-to-r from-nzila-gold/0 via-nzila-gold/10 to-nzila-gold/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl blur-xl" />
+                
+                <div className="relative h-full bg-card/40 backdrop-blur-md border border-white/5 p-8 rounded-2xl hover:border-nzila-gold/30 transition-all duration-300 flex flex-col">
+                    <div className={`w-14 h-14 rounded-lg bg-white/5 flex items-center justify-center mb-6 group-hover:bg-nzila-gold group-hover:text-black transition-all duration-300 ${service.color}`}>
+                        <service.icon size={26} strokeWidth={1.5} />
+                    </div>
+
+                    <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-nzila-gold transition-colors">{service.title}</h3>
+                    <p className="text-muted-foreground leading-relaxed mb-6 flex-grow">
+                        {service.description}
+                    </p>
+
+                    <div className="border-t border-white/5 pt-6 mt-auto">
+                        <ul className="space-y-2 mb-6">
+                            {service.features.map((feature) => (
+                                <li key={feature} className="text-sm text-white/60 flex items-center gap-2">
+                                    <span className="w-1 h-1 rounded-full bg-nzila-gold" />
+                                    {feature}
+                                </li>
+                            ))}
+                        </ul>
+                        <button className="flex items-center gap-2 text-sm font-bold text-white group-hover:text-nzila-gold transition-colors">
+                            Saiba mais <ArrowRight size={16} />
+                        </button>
+                    </div>
                 </div>
-                <h3 className="text-xl font-bold text-primary-foreground mb-3">{service.title}</h3>
-                <p className="text-primary-foreground/60 mb-4 leading-relaxed">{service.description}</p>
-                <ul className="space-y-2">
-                  {service.features.map((feature) => (
-                    <li key={feature} className="flex items-center gap-2 text-sm text-primary-foreground/50">
-                      <span className="w-1.5 h-1.5 rounded-full bg-nzila-gold" />
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-              </div>
             </motion.div>
           ))}
         </div>

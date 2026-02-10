@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ArrowRight, MessageCircle } from 'lucide-react';
+import { ArrowRight, MessageCircle, Play } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 export function HeroSection() {
@@ -10,166 +10,140 @@ export function HeroSection() {
     );
   };
 
-  return (
-    <section
-      id="hero"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
-      style={{
-        background: 'linear-gradient(135deg, hsl(215 85% 20%) 0%, hsl(220 40% 8%) 50%, hsl(215 70% 15%) 100%)',
-      }}
-    >
-      {/* Background Elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        {/* Gold Gradient Orb */}
-        <motion.div
-          className="absolute top-1/4 -left-32 w-96 h-96 rounded-full opacity-25"
-          style={{
-            background: 'radial-gradient(circle, hsl(42 90% 55%) 0%, transparent 70%)',
-          }}
-          animate={{
-            x: [0, 50, 0],
-            y: [0, 30, 0],
-          }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            ease: 'easeInOut',
-          }}
-        />
-        {/* Blue Gradient Orb */}
-        <motion.div
-          className="absolute bottom-1/4 -right-32 w-[500px] h-[500px] rounded-full opacity-20"
-          style={{
-            background: 'radial-gradient(circle, hsl(215 85% 45%) 0%, transparent 70%)',
-          }}
-          animate={{
-            x: [0, -30, 0],
-            y: [0, -50, 0],
-          }}
-          transition={{
-            duration: 25,
-            repeat: Infinity,
-            ease: 'easeInOut',
-          }}
-        />
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.3,
+      },
+    },
+  };
 
-        {/* Grid Pattern */}
-        <div
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        type: 'spring',
+        stiffness: 100,
+        damping: 10,
+      },
+    },
+  };
+
+  return (
+    <section className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden bg-background selection:bg-nzila-gold/30">
+      
+      {/* 1. Dynamic Background (Spotlight Effect) */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        {/* Top Center Glow */}
+        <div className="absolute top-[-10%] left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-nzila-blue/20 blur-[120px] rounded-full mix-blend-screen" />
+        
+        {/* Bottom Right Gold Glow */}
+        <div className="absolute bottom-[-10%] right-[-10%] w-[600px] h-[600px] bg-nzila-gold/10 blur-[100px] rounded-full mix-blend-screen" />
+        
+        {/* Grid Texture */}
+        <div 
           className="absolute inset-0 opacity-[0.03]"
           style={{
-            backgroundImage: `linear-gradient(hsl(42 90% 55%) 1px, transparent 1px),
-                             linear-gradient(90deg, hsl(42 90% 55%) 1px, transparent 1px)`,
-            backgroundSize: '60px 60px',
+            backgroundImage: `radial-gradient(#fff 1px, transparent 1px)`,
+            backgroundSize: `40px 40px`,
           }}
         />
       </div>
 
-      {/* Content */}
-      <div className="container-max section-padding relative z-10">
-        <div className="max-w-4xl mx-auto text-center">
+      {/* 2. Main Content */}
+      <div className="container-max relative z-10 pt-20">
+        <motion.div 
+          className="max-w-5xl mx-auto text-center flex flex-col items-center"
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+        >
           {/* Badge */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-nzila-gold/30 bg-nzila-gold/10 backdrop-blur-sm mb-8"
+          <motion.div 
+            variants={itemVariants}
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-md mb-8 group cursor-default transition-colors hover:border-nzila-gold/50"
           >
-            <span className="w-2 h-2 rounded-full bg-nzila-gold animate-pulse" />
-            <span className="text-sm text-primary-foreground/80">Soluções Digitais & Educação</span>
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-nzila-gold opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-nzila-gold"></span>
+            </span>
+            <span className="text-sm font-medium text-white/80 tracking-wide uppercase text-[10px] sm:text-xs">
+              Nzila Digital Solutions 2026
+            </span>
           </motion.div>
 
-          {/* Headline */}
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-primary-foreground leading-tight mb-6"
+          {/* Massive Typography H1 */}
+          <motion.h1 
+            variants={itemVariants}
+            className="display-title mb-6"
           >
-            Soluções Digitais Estratégicas para{' '}
-            <span className="text-gradient bg-gradient-to-r from-nzila-gold to-nzila-gold-light">
-              Crescimento Real
-            </span>{' '}
-            no Ambiente Online
+            <span className="block text-white">Dominamos o</span>
+            <span className="block mt-2 relative">
+              <span className="absolute -inset-1 blurred-gold opacity-20 blur-xl filter"></span>
+              <span className="text-gradient-gold relative z-10">Futuro Digital</span>
+            </span>
           </motion.h1>
 
           {/* Subtitle */}
-          <motion.p
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-lg sm:text-xl text-primary-foreground/70 max-w-2xl mx-auto mb-10 leading-relaxed"
+          <motion.p 
+            variants={itemVariants}
+            className="text-lg md:text-xl text-muted-foreground max-w-2xl mb-10 leading-relaxed font-light"
           >
-            Ajudamos empresas e profissionais a estruturarem, crescerem e escalarem sua presença digital com estratégia, tecnologia e conhecimento.
+            Transformamos empresas comuns em <span className="text-white font-medium">líderes de mercado</span> através de inteligência digital, design de alto impacto e estratégias de crescimento escalável.
           </motion.p>
 
-          {/* CTA Buttons */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+          {/* CTA Group */}
+          <motion.div 
+            variants={itemVariants}
+            className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto"
           >
-            <Button
-              variant="gold"
-              size="xl"
+            <button
               onClick={openWhatsApp}
-              className="group"
+              className="btn-gold group flex items-center justify-center gap-2"
             >
-              <MessageCircle className="mr-2" size={20} />
-              Falar com a Nzila Digital
-              <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={18} />
-            </Button>
-            <Button
-              variant="hero-outline"
-              size="xl"
-              onClick={() => {
-                document.querySelector('#services')?.scrollIntoView({ behavior: 'smooth' });
-              }}
+              <MessageCircle size={20} className="group-hover:rotate-12 transition-transform" />
+              <span>Iniciar Projeto</span>
+            </button>
+            
+            <button
+              onClick={() => document.querySelector('#services')?.scrollIntoView({ behavior: 'smooth' })}
+              className="btn-glass group flex items-center justify-center gap-2"
             >
-              Conheça nossos serviços
-            </Button>
+              <span>Nossos Serviços</span>
+              <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+            </button>
           </motion.div>
 
-          {/* Trust Indicators */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.5 }}
-            className="mt-16 pt-8 border-t border-primary-foreground/10"
+          {/* Social Proof / Metrics */}
+          <motion.div 
+            variants={itemVariants}
+            className="mt-20 pt-10 border-t border-white/5 w-full grid grid-cols-2 md:grid-cols-4 gap-8"
           >
-            <p className="text-sm text-primary-foreground/50 mb-6">Transformando negócios com estratégia digital</p>
-            <div className="flex flex-wrap justify-center gap-8 text-primary-foreground/40">
-              <div className="text-center">
-                <p className="text-2xl font-bold text-nzila-gold">100+</p>
-                <p className="text-xs">Projetos</p>
+            {[
+              { label: 'Projetos Entregues', value: '100+' },
+              { label: 'Crescimento Médio', value: '300%' },
+              { label: 'Clientes Ativos', value: '50+' },
+              { label: 'Países Alcançados', value: '3' },
+            ].map((stat, i) => (
+              <div key={i} className="flex flex-col items-center">
+                <span className="text-3xl md:text-4xl font-bold text-white mb-1">{stat.value}</span>
+                <span className="text-sm text-muted-foreground uppercase tracking-wider">{stat.label}</span>
               </div>
-              <div className="text-center">
-                <p className="text-2xl font-bold text-nzila-gold">50+</p>
-                <p className="text-xs">Clientes</p>
-              </div>
-              <div className="text-center">
-                <p className="text-2xl font-bold text-nzila-gold">5+</p>
-                <p className="text-xs">Anos de Experiência</p>
-              </div>
-            </div>
+            ))}
           </motion.div>
-        </div>
+
+        </motion.div>
       </div>
 
-      {/* Scroll Indicator */}
-      <motion.div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
-        animate={{ y: [0, 10, 0] }}
-        transition={{ duration: 2, repeat: Infinity }}
-      >
-        <div className="w-6 h-10 rounded-full border-2 border-nzila-gold/40 flex items-start justify-center p-2">
-          <motion.div
-            className="w-1.5 h-1.5 rounded-full bg-nzila-gold"
-            animate={{ y: [0, 12, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
-          />
-        </div>
-      </motion.div>
+      {/* 3. Floating Abstract Elements (Foreground Depth) */}
+      <div className="absolute top-1/3 left-[10%] w-20 h-20 bg-gradient-to-br from-nzila-blue to-transparent opacity-20 blur-2xl animate-float delay-100 pointer-events-none" />
+      <div className="absolute bottom-1/3 right-[10%] w-32 h-32 bg-gradient-to-tr from-nzila-gold to-transparent opacity-10 blur-3xl animate-float delay-700 pointer-events-none" />
+
     </section>
   );
 }

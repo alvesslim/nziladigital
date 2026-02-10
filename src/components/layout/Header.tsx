@@ -10,7 +10,6 @@ const navItems = [
   { label: 'Serviços', href: '#services' },
   { label: 'Educação', href: '#education' },
   { label: 'Portfólio', href: '#portfolio' },
-  { label: 'Contato', href: '#contact' },
 ];
 
 export function Header() {
@@ -19,7 +18,7 @@ export function Header() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      setIsScrolled(window.scrollY > 20);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
@@ -39,78 +38,75 @@ export function Header() {
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
-        ? 'bg-background/95 backdrop-blur-md shadow-elevated border-b border-border'
-        : 'bg-transparent'
+        ? 'bg-background/80 backdrop-blur-xl border-b border-white/5 py-3'
+        : 'bg-transparent py-5'
         }`}
     >
-      <div className="container-max section-padding py-4">
-        <nav className="flex items-center justify-between">
-          {/* Logo */}
-          <motion.a
-            href="#hero"
-            onClick={(e) => {
-              e.preventDefault();
-              scrollToSection('#hero');
-            }}
-            className="flex items-center gap-3"
-            whileHover={{ scale: 1.02 }}
-          >
-            <img
-              src={logo}
-              alt="Nzila Digital Logo"
-              className="h-16 sm:h-20 w-auto"
-            />
-          </motion.a>
+      <div className="container-max flex items-center justify-between">
+        {/* Logo */}
+        <motion.a
+          href="#hero"
+          onClick={(e) => {
+            e.preventDefault();
+            scrollToSection('#hero');
+          }}
+          className="relative z-50"
+          whileHover={{ scale: 1.05 }}
+        >
+          {/* Assuming logo might need a brightness filter for dark mode if it's dark text, 
+              but usually logos are prepared. If not, we can add brightness-0 invert if needed. 
+              For now keeping as is. */}
+          <img
+            src={logo}
+            alt="Nzila Digital Logo"
+            className="h-12 w-auto object-contain"
+          />
+        </motion.a>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
-            {navItems.map((item) => (
-              <a
-                key={item.label}
-                href={item.href}
-                onClick={(e) => {
-                  e.preventDefault();
-                  scrollToSection(item.href);
-                }}
-                className={`text-sm font-medium transition-colors hover:text-nzila-gold ${isScrolled ? 'text-foreground' : 'text-primary-foreground/90'
-                  }`}
-              >
-                {item.label}
-              </a>
-            ))}
-            <Button
-              variant="gold"
-              size="sm"
-              onClick={() => window.open('https://wa.me/244946554601?text=Olá! Gostaria de saber mais sobre os serviços da Nzila Digital.', '_blank')}
+        {/* Desktop Navigation */}
+        <nav className="hidden md:flex items-center gap-8">
+          {navItems.map((item) => (
+            <a
+              key={item.label}
+              href={item.href}
+              onClick={(e) => {
+                e.preventDefault();
+                scrollToSection(item.href);
+              }}
+              className="text-sm font-medium text-white/70 hover:text-nzila-gold transition-colors relative group"
             >
-              WhatsApp
-            </Button>
-          </div>
-
-          {/* Mobile Menu Button */}
-          <button
-            className="md:hidden p-2"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            aria-label="Toggle menu"
+              {item.label}
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-nzila-gold transition-all duration-300 group-hover:w-full" />
+            </a>
+          ))}
+          
+          <Button
+            className="bg-white/10 hover:bg-white/20 text-white border border-white/10 rounded-full px-6 transition-all duration-300 hover:scale-105"
+            onClick={() => window.open('https://wa.me/244946554601', '_blank')}
           >
-            {isMobileMenuOpen ? (
-              <X className={isScrolled ? 'text-foreground' : 'text-primary-foreground'} size={24} />
-            ) : (
-              <Menu className={isScrolled ? 'text-foreground' : 'text-primary-foreground'} size={24} />
-            )}
-          </button>
+            Fale Conosco
+          </Button>
         </nav>
 
-        {/* Mobile Menu */}
+        {/* Mobile Menu Toggle */}
+        <button
+          className="md:hidden z-50 p-2 text-white"
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+        >
+          {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+        </button>
+
+        {/* Mobile Menu Overlay */}
         <AnimatePresence>
           {isMobileMenuOpen && (
             <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
-              className="md:hidden mt-4 pb-4"
+              initial={{ opacity: 0, x: '100%' }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: '100%' }}
+              transition={{ type: "spring", stiffness: 300, damping: 30 }}
+              className="fixed inset-0 bg-background/95 backdrop-blur-xl z-40 flex items-center justify-center md:hidden"
             >
-              <div className="flex flex-col gap-4 bg-card rounded-lg p-4 shadow-elevated">
+              <div className="flex flex-col items-center gap-8">
                 {navItems.map((item) => (
                   <a
                     key={item.label}
@@ -119,17 +115,17 @@ export function Header() {
                       e.preventDefault();
                       scrollToSection(item.href);
                     }}
-                    className="text-foreground font-medium py-2 hover:text-nzila-gold transition-colors"
+                    className="text-2xl font-bold text-white hover:text-nzila-gold transition-colors"
                   >
                     {item.label}
                   </a>
                 ))}
+                <div className="w-12 h-[1px] bg-white/20 my-4" />
                 <Button
-                  variant="gold"
-                  className="mt-2"
-                  onClick={() => window.open('https://wa.me/244946554601?text=Olá! Gostaria de saber mais sobre os serviços da Nzila Digital.', '_blank')}
+                  className="bg-nzila-gold hover:bg-yellow-500 text-background font-bold rounded-full px-8 py-6 text-lg"
+                  onClick={() => window.open('https://wa.me/244946554601', '_blank')}
                 >
-                  Falar no WhatsApp
+                  WhatsApp
                 </Button>
               </div>
             </motion.div>

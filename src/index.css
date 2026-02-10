@@ -1,4 +1,120 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Liquid Corporate Modernism - Dark Premium Default */
+    
+    /* Deepest Navy Background - #020617 */
+    --background: 222 47% 5%;
+    /* Bright White Text */
+    --foreground: 210 40% 98%;
+
+    /* Cards - Slightly lighter navy */
+    --card: 222 47% 7%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222 47% 7%;
+    --popover-foreground: 210 40% 98%;
+
+    /* Vibrant Gold - Primary Action */
+    --primary: 45 96% 55%;
+    --primary-foreground: 222 47% 5%;
+
+    /* Electric Blue - Secondary/Accent */
+    --secondary: 217 91% 60%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 20% 65%;
+
+    --accent: 217 91% 60%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217 33% 17%;
+    --input: 217 33% 17%;
+    --ring: 45 96% 55%;
+
+    /* Radius: Hybrid Approach (Sharp + Pill) */
+    --radius: 0.5rem;
+
+    /* Custom Brand Colors for gradients */
+    --nzila-gold: 45 96% 55%;
+    --nzila-blue: 217 91% 60%;
+    
+    /* Shadows - Glowy */
+    --shadow-glow: 0 0 50px -10px hsl(45 96% 55% / 0.15);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    @apply bg-background text-foreground;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased overflow-x-hidden;
+    font-feature-settings: "ss01", "ss02", "cv01", "cv02";
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display tracking-tight;
+  }
+}
+
+@layer components {
+  /* Container - Consistent Max Width */
+  .container-max {
+    @apply max-w-7xl mx-auto px-6 md:px-12 w-full;
+  }
+
+  /* Typography Presets */
+  .display-title {
+    @apply text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-[1.1];
+  }
+
+  .text-gradient-gold {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 via-amber-300 to-yellow-500;
+  }
+
+  .text-gradient-blue {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-cyan-300 to-blue-500;
+  }
+
+  /* Buttons - Liquid Corporate */
+  .btn-gold {
+    @apply bg-primary text-primary-foreground hover:bg-yellow-400 hover:scale-105 transition-all duration-300 shadow-[0_0_20px_-5px_rgba(234,179,8,0.4)] font-semibold rounded-full px-8 py-3;
+  }
+
+  .btn-glass {
+    @apply bg-white/5 backdrop-blur-sm border border-white/10 text-white hover:bg-white/10 hover:scale-105 transition-all duration-300 rounded-full px-8 py-3 font-medium;
+  }
+}
+
+@layer utilities {
+  .glass-panel {
+    @apply bg-white/5 backdrop-blur-xl border border-white/10 shadow-2xl;
+  }
+  
+  .text-glow {
+    text-shadow: 0 0 20px rgba(234, 179, 8, 0.3);
+  }
+  
+  .delay-100 { animation-delay: 100ms; }
+  .delay-200 { animation-delay: 200ms; }
+  .delay-300 { animation-delay: 300ms; }
+}
 
 @tailwind base;
 @tailwind components;

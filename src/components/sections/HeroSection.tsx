@@ -82,10 +82,10 @@ export function HeroSection() {
             variants={itemVariants}
             className="display-title mb-6"
           >
-            <span className="block text-white">Somos a sua</span>
+            <span className="block text-white">Dominamos o</span>
             <span className="block mt-2 relative">
               <span className="absolute -inset-1 blurred-gold opacity-20 blur-xl filter"></span>
-              <span className="text-gradient-gold relative z-10">melhor Escolha</span>
+              <span className="text-gradient-gold relative z-10">Futuro Digital</span>
             </span>
           </motion.h1>
 

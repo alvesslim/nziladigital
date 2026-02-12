@@ -1,7 +1,6 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { Globe, Zap, Share2, TrendingUp, Layers, Code, ArrowRight } from 'lucide-react';
-import { cn } from '@/lib/utils'; // Assuming standard shadcn util exists, if not I'll inline the logic
 
 const services = [
   {

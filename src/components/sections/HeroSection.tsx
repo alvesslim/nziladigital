@@ -1,16 +1,16 @@
-import { motion } from 'framer-motion';
-import { ArrowRight, MessageCircle, Play } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { motion, Variants } from 'framer-motion';
+import { ArrowRight, MessageCircle } from 'lucide-react';
 
 export function HeroSection() {
   const openWhatsApp = () => {
     window.open(
       'https://wa.me/244946554601?text=Olá! Gostaria de saber mais sobre os serviços da Nzila Digital.',
-      '_blank'
+      '_blank',
+      'noopener,noreferrer'
     );
   };
 
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -21,7 +21,7 @@ export function HeroSection() {
     },
   };
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: { y: 20, opacity: 0 },
     visible: {
       y: 0,
@@ -111,7 +111,7 @@ export function HeroSection() {
             </button>
             
             <button
-              onClick={() => document.querySelector('#services')?.scrollIntoView({ behavior: 'smooth' })}
+              onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}
               className="btn-glass group flex items-center justify-center gap-2"
             >
               <span>Nossos Serviços</span>
@@ -129,8 +129,8 @@ export function HeroSection() {
               { label: 'Crescimento Médio', value: '300%' },
               { label: 'Clientes Ativos', value: '50+' },
               { label: 'Países Alcançados', value: '3' },
-            ].map((stat, i) => (
-              <div key={i} className="flex flex-col items-center">
+            ].map((stat) => (
+              <div key={stat.label} className="flex flex-col items-center">
                 <span className="text-3xl md:text-4xl font-bold text-white mb-1">{stat.value}</span>
                 <span className="text-sm text-muted-foreground uppercase tracking-wider">{stat.label}</span>
               </div>

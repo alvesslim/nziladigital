@@ -1,8 +1,10 @@
 import { motion, Variants } from 'framer-motion';
 import { ArrowRight, MessageCircle } from 'lucide-react';
+import { track } from '@vercel/analytics';
 
 export function HeroSection() {
   const openWhatsApp = () => {
+    track('whatsapp_click', { location: 'hero' });
     window.open(
       'https://wa.me/244946361183?text=Olá! Gostaria de solicitar um orçamento com a Nzila Digital.',
       '_blank',

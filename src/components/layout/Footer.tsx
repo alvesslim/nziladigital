@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Instagram, Facebook, MessageCircle, ArrowUpRight, Send, CheckCircle, User, AtSign, MessageSquare } from 'lucide-react';
 import logo from '@/assets/logo-nzila-official.png';
 import { Button } from '@/components/ui/button';
+import { track } from '@vercel/analytics';
 
 export function Footer() {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
@@ -11,12 +12,14 @@ export function Footer() {
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
+    track('form_submit_attempt', { email: formData.email });
     const subject = encodeURIComponent(`Contacto de ${formData.name} via Site`);
     const body = encodeURIComponent(
       `Nome: ${formData.name}\nEmail: ${formData.email}\n\nMensagem:\n${formData.message}`
     );
     window.open(`mailto:nziladigital@gmail.com?subject=${subject}&body=${body}`, '_self');
     setIsSent(true);
+    track('form_submit_success', { name: formData.name });
     setTimeout(() => setIsSent(false), 4000);
   };
 
@@ -43,7 +46,10 @@ export function Footer() {
             </p>
 
             <Button
-              onClick={() => window.open('https://wa.me/244946361183?text=Olá! Vim pelo site da Nzila Digital e gostaria de saber mais sobre os vossos serviços.', '_blank')}
+              onClick={() => {
+                track('whatsapp_click', { location: 'footer_main' });
+                window.open('https://wa.me/244946361183?text=Olá! Vim pelo site da Nzila Digital e gostaria de saber mais sobre os vossos serviços.', '_blank');
+              }}
               className="btn-gold h-12 px-8"
             >
               Iniciar Conversa

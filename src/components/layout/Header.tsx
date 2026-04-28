@@ -3,6 +3,7 @@ import { motion, AnimatePresence, useScroll, useSpring } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import logo from '@/assets/logo-nzila-official.png';
+import { track } from '@vercel/analytics';
 
 const navItems = [
   { label: 'Início', href: '#hero' },
@@ -49,6 +50,7 @@ export function Header() {
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
+    track('menu_navigation', { section: href });
     setIsMobileMenuOpen(false);
   };
 
@@ -102,7 +104,10 @@ export function Header() {
 
             <Button
               className="btn-gold h-10 px-6"
-              onClick={() => window.open('https://wa.me/244946361183?text=Olá! Gostaria de falar com um especialista da Nzila Digital.', '_blank')}
+              onClick={() => {
+                track('whatsapp_click', { location: 'header_desktop' });
+                window.open('https://wa.me/244946361183?text=Olá! Gostaria de falar com um especialista da Nzila Digital.', '_blank');
+              }}
             >
               Falar com Especialista
             </Button>

@@ -1,10 +1,12 @@
 import { motion } from 'framer-motion';
 import { MessageCircle, ArrowRight, Zap } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { track } from '@vercel/analytics';
 
 export function CTASection() {
 
   const openWhatsApp = () => {
+    track('whatsapp_click', { location: 'cta_section' });
     window.open(
       'https://wa.me/244946361183?text=Olá! Gostaria de iniciar um projecto com a Nzila Digital.',
       '_blank'

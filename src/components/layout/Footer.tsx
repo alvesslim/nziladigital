@@ -29,7 +29,7 @@ export function Footer() {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-16 mb-12">
           {/* Brand Column */}
           <div className="space-y-8">
-            <a href="#hero" className="inline-block group">
+            <a href="#hero" className="inline-block group" title="Voltar ao início - Nzila Digital">
               <img
                 src={logo}
                 alt="Nzila Digital Logo"
@@ -63,6 +63,7 @@ export function Footer() {
                 <li key={link.label}>
                   <a
                     href={link.href}
+                    title={`Ver mais sobre ${link.label}`}
                     className="text-muted-foreground hover:text-nzila-gold transition-colors flex items-center gap-2 group"
                   >
                     {link.label}
@@ -88,6 +89,7 @@ export function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={social.label}
+                  title={`Seguir Nzila Digital no ${social.label}`}
                   className="w-11 h-11 rounded-sm border border-white/10 bg-white/5 flex items-center justify-center text-white hover:bg-nzila-gold hover:border-nzila-gold hover:text-background transition-all duration-300"
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}

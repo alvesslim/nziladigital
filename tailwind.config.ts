@@ -15,8 +15,8 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
-        display: ['Outfit', 'Inter', 'sans-serif'], // New display font for headings
+        sans: ['Inter', 'Helvetica Neue', 'Arial', 'sans-serif'],
+        display: ['Outfit', 'Helvetica Neue', 'Inter', 'sans-serif'],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -53,8 +53,12 @@ export default {
           foreground: "hsl(var(--card-foreground))",
         },
         nzila: {
-          gold: "hsl(var(--nzila-gold))",
-          blue: "hsl(var(--nzila-blue))",
+          gold: {
+            DEFAULT: "hsl(var(--nzila-gold))",
+            light: "hsl(var(--nzila-gold-light))",
+            dark: "hsl(var(--nzila-gold-dark))",
+          },
+          ivory: "hsl(var(--nzila-ivory))",
         }
       },
       borderRadius: {

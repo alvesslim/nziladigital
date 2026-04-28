@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import logo from '@/assets/logo-nzila-v2.png';
+import logo from '@/assets/logo-nzila-official.png';
 
 const navItems = [
   { label: 'Início', href: '#hero' },
@@ -51,15 +51,14 @@ export function Header() {
             scrollToSection('#hero');
           }}
           className="relative z-50"
-          whileHover={{ scale: 1.05 }}
+          whileHover={{ scale: 1.03 }}
         >
-          {/* Assuming logo might need a brightness filter for dark mode if it's dark text, 
-              but usually logos are prepared. If not, we can add brightness-0 invert if needed. 
-              For now keeping as is. */}
           <img
             src={logo}
             alt="Nzila Digital Logo"
-            className="h-12 w-auto object-contain"
+            className="h-10 w-auto object-contain"
+            loading="eager"
+            decoding="async"
           />
         </motion.a>
 
@@ -79,12 +78,12 @@ export function Header() {
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-nzila-gold transition-all duration-300 group-hover:w-full" />
             </a>
           ))}
-          
+
           <Button
-            className="bg-white/10 hover:bg-white/20 text-white border border-white/10 rounded-full px-6 transition-all duration-300 hover:scale-105"
-            onClick={() => window.open('https://wa.me/244946554601', '_blank')}
+            className="btn-gold h-10 px-6"
+            onClick={() => window.open('https://wa.me/244946361183?text=Olá! Gostaria de falar com um especialista da Nzila Digital.', '_blank')}
           >
-            Fale Conosco
+            Falar com Especialista
           </Button>
         </nav>
 
@@ -123,7 +122,7 @@ export function Header() {
                 <div className="w-12 h-[1px] bg-white/20 my-4" />
                 <Button
                   className="bg-nzila-gold hover:bg-yellow-500 text-background font-bold rounded-full px-8 py-6 text-lg"
-                  onClick={() => window.open('https://wa.me/244946554601', '_blank')}
+                  onClick={() => window.open('https://wa.me/244946361183?text=Olá! Vim pelo site da Nzila Digital e quero começar um projecto.', '_blank')}
                 >
                   WhatsApp
                 </Button>

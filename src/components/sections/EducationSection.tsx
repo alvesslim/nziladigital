@@ -99,7 +99,7 @@ export function EducationSection() {
             </div>
 
             <Button
-              className="btn-gold h-12 px-6 sm:px-10 w-full sm:w-auto text-[11px] sm:text-xs"
+              className="btn-gold w-full sm:w-auto"
               onClick={() => window.open('https://wa.me/244946361183?text=Tenho interesse na Nzila Academy. Gostaria de mais informações.', '_blank')}
             >
               Entrar na Lista de Espera

@@ -50,14 +50,14 @@ export function CTASection() {
               Não espere o futuro chegar. Construa sua autoridade digital hoje com quem entende de crescimento real.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center px-4">
+            <div className="flex justify-center px-4">
               <Button
-                className="btn-gold h-auto text-[11px] sm:text-sm px-5 sm:px-12 py-5 sm:py-6 rounded-sm shadow-2xl w-full sm:w-auto flex items-center justify-center gap-3"
+                className="btn-gold w-full sm:w-auto gap-3"
                 onClick={openWhatsApp}
               >
-                <MessageCircle size={18} />
-                <span className="whitespace-nowrap">Iniciar Projeto Agora</span>
-                <ArrowRight className="group-hover:translate-x-1 transition-transform" size={16} />
+                <MessageCircle size={20} className="shrink-0" />
+                <span>Iniciar Projeto Agora</span>
+                <ArrowRight size={18} className="shrink-0 group-hover:translate-x-1 transition-transform" />
               </Button>
             </div>
 

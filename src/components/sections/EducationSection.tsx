@@ -72,7 +72,7 @@ export function EducationSection() {
               Não vendemos apenas serviços. Compartilhamos o conhecimento prático que usamos para crescer nossos próprios negócios e o de nossos clientes. Sem teorias vazias, apenas campo de batalha.
             </p>
 
-            <div className="grid sm:grid-cols-2 gap-6 mb-12">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mb-12">
               {educationAreas.map((area, index) => (
                 <motion.div
                   key={area.title}
@@ -80,7 +80,7 @@ export function EducationSection() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ margin: '-20px' }}
                   transition={{ duration: 0.5, delay: 0.1 + index * 0.1, ease: [0.22, 1, 0.36, 1] }}
-                  className="relative group p-6 rounded-sm bg-white/[0.02] border border-white/[0.03] hover:border-nzila-gold/30 transition-all duration-500"
+                  className="relative group p-5 sm:p-6 rounded-sm bg-white/[0.02] border border-white/[0.03] hover:border-nzila-gold/30 transition-all duration-500"
                 >
                   {area.highlight && (
                     <span className="absolute -top-2 -right-2 px-2 py-0.5 bg-nzila-gold text-black text-[10px] font-bold uppercase rounded-sm">
@@ -90,8 +90,8 @@ export function EducationSection() {
                   <div className="mb-4 text-white group-hover:text-nzila-gold transition-colors">
                     <area.icon size={28} strokeWidth={1.5} />
                   </div>
-                  <h4 className="font-bold text-white mb-2">{area.title}</h4>
-                  <p className="text-sm text-muted-foreground leading-relaxed content-start">
+                  <h4 className="font-bold text-white mb-2 text-sm sm:text-base">{area.title}</h4>
+                  <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed content-start">
                     {area.description}
                   </p>
                 </motion.div>
@@ -99,11 +99,12 @@ export function EducationSection() {
             </div>
 
             <Button
-              className="btn-gold h-12 px-10"
+              className="btn-gold h-12 px-6 sm:px-10 w-full sm:w-auto text-[11px] sm:text-xs"
               onClick={() => window.open('https://wa.me/244946361183?text=Tenho interesse na Nzila Academy. Gostaria de mais informações.', '_blank')}
             >
               Entrar na Lista de Espera
             </Button>
+
           </motion.div>
 
           {/* Visual Side */}

@@ -23,7 +23,7 @@ export function CTASection() {
       </div>
 
       <div className="container-max relative z-10">
-        <div className="relative rounded-sm overflow-hidden border border-white/[0.03] bg-white/[0.01] backdrop-blur-xl p-12 md:p-24 text-center">
+        <div className="relative rounded-sm overflow-hidden border border-white/[0.03] bg-white/[0.01] backdrop-blur-xl p-8 md:p-24 text-center">
 
           {/* Inner Glow */}
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[2px] bg-gradient-to-r from-transparent via-nzila-gold/50 to-transparent animate-gradient-shift" />
@@ -39,29 +39,29 @@ export function CTASection() {
               Vamos Escalar?
             </div>
 
-            <h2 className="text-4xl md:text-5xl lg:text-8xl font-display font-bold text-white mb-8 leading-tight tracking-tight">
+            <h2 className="text-4xl md:text-5xl lg:text-7xl font-display font-bold text-white mb-8 leading-tight tracking-tight">
               Sua marca merece <br />
               <span className="text-gradient-gold drop-shadow-sm">
                 estar no topo.
               </span>
             </h2>
 
-            <p className="text-xl text-muted-foreground mb-12 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-lg md:text-xl text-muted-foreground mb-12 max-w-2xl mx-auto leading-relaxed">
               Não espere o futuro chegar. Construa sua autoridade digital hoje com quem entende de crescimento real.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-8 justify-center items-center">
+            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center px-4">
               <Button
-                className="btn-gold h-auto text-sm px-12 py-6 rounded-sm shadow-2xl w-full sm:w-auto"
+                className="btn-gold h-auto text-[11px] sm:text-sm px-5 sm:px-12 py-5 sm:py-6 rounded-sm shadow-2xl w-full sm:w-auto flex items-center justify-center gap-3"
                 onClick={openWhatsApp}
               >
-                <MessageCircle className="mr-3" size={20} />
-                Iniciar Projeto Agora
-                <ArrowRight className="ml-3 group-hover:translate-x-1 transition-transform" size={18} />
+                <MessageCircle size={18} />
+                <span className="whitespace-nowrap">Iniciar Projeto Agora</span>
+                <ArrowRight className="group-hover:translate-x-1 transition-transform" size={16} />
               </Button>
             </div>
 
-            <p className="mt-8 text-sm text-white/30 tracking-wide font-light">
+            <p className="mt-8 text-[10px] sm:text-sm text-white/30 tracking-wide font-light">
               Atendimento exclusivo • Vagas limitadas para consultoria
             </p>
           </motion.div>

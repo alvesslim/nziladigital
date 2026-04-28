@@ -112,12 +112,13 @@
 
   /* Buttons - Premium Agency Style */
   .btn-gold {
-    @apply bg-primary text-primary-foreground hover:bg-nzila-gold-light hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 shadow-lg font-bold rounded-sm px-6 sm:px-10 py-4 sm:py-5 uppercase tracking-[0.1em] sm:tracking-[0.2em] text-[10px] sm:text-[11px] touch-manipulation min-h-[44px] flex items-center justify-center;
+    @apply bg-primary text-primary-foreground hover:bg-nzila-gold-light hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 shadow-lg font-bold rounded-sm px-4 sm:px-10 py-4 sm:py-5 uppercase tracking-[0.05em] sm:tracking-[0.2em] text-[9.5px] sm:text-[11px] touch-manipulation min-h-[44px] flex items-center justify-center;
   }
 
   .btn-glass {
-    @apply bg-white/5 backdrop-blur-md border border-white/10 text-white hover:bg-white/10 hover:border-nzila-gold/30 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 rounded-sm px-6 sm:px-10 py-4 sm:py-5 uppercase tracking-[0.1em] sm:tracking-[0.2em] text-[10px] sm:text-[11px] touch-manipulation min-h-[44px] flex items-center justify-center;
+    @apply bg-white/5 backdrop-blur-md border border-white/10 text-white hover:bg-white/10 hover:border-nzila-gold/30 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 rounded-sm px-4 sm:px-10 py-4 sm:py-5 uppercase tracking-[0.05em] sm:tracking-[0.2em] text-[9.5px] sm:text-[11px] touch-manipulation min-h-[44px] flex items-center justify-center;
   }
+
 
 
 }

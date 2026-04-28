@@ -115,25 +115,34 @@ export function Header() {
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, scale: 1.1 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 1.1 }}
-            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
             className="fixed inset-0 bg-[#050505] z-[55] flex flex-col items-center justify-center md:hidden"
           >
+            {/* Close Button Inside Menu */}
+            <button
+              className="absolute top-6 right-6 p-3 text-white bg-white/5 rounded-full border border-white/10 active:scale-90 transition-transform"
+              onClick={() => setIsMobileMenuOpen(false)}
+              aria-label="Fechar menu"
+            >
+              <X size={28} />
+            </button>
+
             {/* Background Decor for Mobile Menu */}
             <div className="absolute inset-0 pointer-events-none overflow-hidden">
               <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-nzila-gold/10 blur-[100px] rounded-full" />
               <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-nzila-gold/5 blur-[100px] rounded-full" />
             </div>
 
-            <div className="relative z-10 flex flex-col items-center gap-10 w-full px-6">
+            <div className="relative z-10 flex flex-col items-center gap-8 w-full px-6">
               {navItems.map((item, index) => (
                 <motion.a
                   key={item.label}
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.1 + index * 0.05 }}
+                  transition={{ delay: index * 0.03 }}
                   href={item.href}
                   onClick={(e) => {
                     e.preventDefault();
@@ -145,22 +154,22 @@ export function Header() {
                 </motion.a>
               ))}
 
-              <div className="w-20 h-[1px] bg-white/10 my-2" />
+              <div className="w-20 h-[1px] bg-white/10 my-1" />
 
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4 }}
+                transition={{ delay: 0.2 }}
                 className="w-full flex flex-col gap-4"
               >
                 <Button
-                  className="btn-gold h-16 w-full text-sm sm:text-base font-black shadow-[0_0_30px_-5px_rgba(201,168,76,0.3)]"
+                  className="btn-gold h-14 w-full text-xs font-black shadow-2xl"
                   onClick={() => window.open('https://wa.me/244946361183?text=Olá! Vim pelo site da Nzila Digital e quero começar um projecto.', '_blank')}
                 >
-                  Falar no WhatsApp
+                  WhatsApp da Agência
                 </Button>
 
-                <p className="text-center text-white/30 text-[10px] uppercase tracking-[0.3em] font-bold">
+                <p className="text-center text-white/30 text-[9px] uppercase tracking-[0.3em] font-bold">
                   Nzila Digital · 2026
                 </p>
               </motion.div>
@@ -168,6 +177,7 @@ export function Header() {
           </motion.div>
         )}
       </AnimatePresence>
+
     </>
   );
 }

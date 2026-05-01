@@ -60,7 +60,8 @@ export function Header() {
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.5 }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
+        style={{ backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden' }}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 [transform:translate3d(0,0,0)] will-change-transform ${isScrolled
           ? 'bg-background/95 backdrop-blur-xl border-b border-white/5 py-3'
           : 'bg-transparent py-5'
           }`}

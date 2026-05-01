@@ -29,6 +29,7 @@ const projects = [
   { id: 15, src: '/portfolio/w3.jpg', title: 'Manhanga — Login Page', category: 'Programação' as Category, link: null },
   { id: 16, src: '/portfolio/11.png', title: 'Facilita — Sistema Académico', category: 'Programação' as Category, link: 'https://facilita.it.ao/' },
   { id: 17, src: '/portfolio/12.png', title: 'Elias da Silva — Portfólio', category: 'Programação' as Category, link: 'https://eliasdasilva.it.ao/' },
+  { id: 18, src: '/portfolio/13.png', title: 'Motherboard — Website Oficial', category: 'Programação' as Category, link: 'https://motherboard.it.ao/' },
 ];
 
 export function PortfolioSection() {

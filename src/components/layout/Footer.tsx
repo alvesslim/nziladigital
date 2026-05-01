@@ -1,6 +1,6 @@
 import { useState, FormEvent } from 'react';
 import { motion } from 'framer-motion';
-import { Instagram, Facebook, MessageCircle, ArrowUpRight, Send, CheckCircle, User, AtSign, MessageSquare } from 'lucide-react';
+import { Instagram, Facebook, MessageCircle, ArrowUpRight, Send, CheckCircle, User, AtSign, MessageSquare, Youtube } from 'lucide-react';
 import logo from '@/assets/logo-nzila-official.png';
 import { Button } from '@/components/ui/button';
 import { track } from '@vercel/analytics';
@@ -86,6 +86,7 @@ export function Footer() {
             <div className="flex gap-3">
               {[
                 { icon: Instagram, href: 'https://www.instagram.com/nziladigital17/', label: 'Instagram' },
+                { icon: Youtube, href: 'https://www.youtube.com/@NzilaDigital', label: 'YouTube' },
                 { icon: Facebook, href: 'https://www.facebook.com/profile.php?id=61586026881838', label: 'Facebook' },
                 { icon: MessageCircle, href: 'https://wa.me/244946361183?text=Olá! Vim pelo site da Nzila Digital e gostaria de saber mais sobre os vossos serviços.', label: 'WhatsApp' },
               ].map((social) => (

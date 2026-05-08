@@ -3,7 +3,7 @@ import { Sparkles, BookOpen, Rocket, Code, GraduationCap, Check } from 'lucide-r
 import { Button } from '@/components/ui/button';
 
 interface EducationArea {
-  icon: any;
+  icon: React.ElementType;
   title: string;
   description: string;
   highlight: string | null;

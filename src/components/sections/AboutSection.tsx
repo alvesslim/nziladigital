@@ -136,7 +136,7 @@ export function AboutSection() {
           </div>
         </div>
 
-      </div>
+        </div>
     </section >
   );
 }

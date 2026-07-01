@@ -11,6 +11,7 @@ const navItems = [
   { label: 'Serviços', href: '#services' },
   { label: 'Educação', href: '#education' },
   { label: 'Portfólio', href: '#portfolio' },
+  { label: 'Nossa equipa', href: '#team' },
 ];
 
 export function Header() {

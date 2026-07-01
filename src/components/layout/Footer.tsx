@@ -13,14 +13,16 @@ export function Footer() {
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     track('form_submit_attempt', { email: formData.email });
-    const subject = encodeURIComponent(`Contacto de ${formData.name} via Site`);
-    const body = encodeURIComponent(
-      `Nome: ${formData.name}\nEmail: ${formData.email}\n\nMensagem:\n${formData.message}`
+    const text = encodeURIComponent(
+      `*Novo Contacto via Site*\n\n*Nome:* ${formData.name}\n*Email:* ${formData.email}\n\n*Mensagem:*\n${formData.message}`
     );
-    window.open(`mailto:nziladigital@gmail.com?subject=${subject}&body=${body}`, '_self');
+    window.open(`https://wa.me/244946361183?text=${text}`, '_blank');
     setIsSent(true);
     track('form_submit_success', { name: formData.name });
-    setTimeout(() => setIsSent(false), 4000);
+    setTimeout(() => {
+      setIsSent(false);
+      setFormData({ name: '', email: '', message: '' });
+    }, 4000);
   };
 
   return (
@@ -272,7 +274,6 @@ export function Footer() {
 
         <div className="border-t border-white/10 pt-8 flex flex-col items-center gap-4 text-sm text-muted-foreground text-center">
           <p>© Copyright 2026 Nzila Digital Solutions. Todos os direitos reservados.</p>
-          <p className="text-white/30 text-xs">Designed by Orlando Correia — Nzila Digital</p>
         </div>
       </div>
     </footer>

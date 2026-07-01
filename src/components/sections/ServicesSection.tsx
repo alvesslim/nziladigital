@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { Globe, Share2, TrendingUp, Layers, ArrowRight, Headphones, GraduationCap, Megaphone, Palette } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const services = [
   {
@@ -113,14 +114,23 @@ export function ServicesSection() {
                       </li>
                     ))}
                   </ul>
-                  <a
-                    href={`https://wa.me/244946361183?text=Olá! Gostaria de saber mais sobre o serviço de ${service.title} da Nzila Digital.`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 text-sm font-bold text-white group-hover:text-nzila-gold transition-colors"
-                  >
-                    Saiba mais <ArrowRight size={16} />
-                  </a>
+                  {service.title === 'Gestão de Tráfego' ? (
+                    <Link
+                      to="/orcamento-trafego"
+                      className="flex items-center gap-2 text-sm font-bold text-white group-hover:text-nzila-gold transition-colors"
+                    >
+                      Saiba mais <ArrowRight size={16} />
+                    </Link>
+                  ) : (
+                    <a
+                      href={`https://wa.me/244946361183?text=Olá! Gostaria de saber mais sobre o serviço de ${service.title} da Nzila Digital.`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 text-sm font-bold text-white group-hover:text-nzila-gold transition-colors"
+                    >
+                      Saiba mais <ArrowRight size={16} />
+                    </a>
+                  )}
                 </div>
               </div>
             </motion.div>

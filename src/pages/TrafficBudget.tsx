@@ -46,14 +46,12 @@ export default function TrafficBudget() {
     diario: ''
   });
 
-  const [orcamentoGerado, setOrcamentoGerado] = useState(false);
-
   const handlePlataformaToggle = (plat: string) => {
     setFormData(prev => ({
       ...prev,
       plataformas: prev.plataformas.includes(plat)
-        ? prev.plataformas.filter(p => p !== plat)
-        : [...prev.plataformas, plat]
+        ? []
+        : [plat]
     }));
   };
 
@@ -74,14 +72,6 @@ export default function TrafficBudget() {
 
   const percentAnuncios = totalCliente > 0 ? (investimentoAnuncios / totalCliente) * 100 : 0;
   const percentGestao = totalCliente > 0 ? (lucroGestor / totalCliente) * 100 : 0;
-
-  const handleGerarOrcamento = () => {
-    if (duracaoNum <= 0 || diarioNum <= 0) {
-      alert("Por favor, preencha a duração e o orçamento diário com valores maiores que 0.");
-      return;
-    }
-    setOrcamentoGerado(true);
-  };
 
   const handleEnviarWhatsApp = () => {
     const text = `*Orçamento de Gestão de Tráfego*\n\n` +
@@ -109,10 +99,14 @@ export default function TrafficBudget() {
     window.open(`https://wa.me/244946361183?text=${encodedText}`, '_blank');
   };
 
-  const chartData = [
-    { name: 'Anúncios', value: investimentoAnuncios, fill: '#3b82f6' },
-    { name: 'Gestão', value: lucroGestor, fill: '#f97316' },
-  ];
+  const chartData = totalCliente > 0 
+    ? [
+        { name: 'Anúncios', value: investimentoAnuncios, fill: '#3b82f6' },
+        { name: 'Gestão', value: lucroGestor, fill: '#f97316' },
+      ]
+    : [
+        { name: 'Sem dados', value: 1, fill: '#333333' }
+      ];
 
   const chartConfig = {
     Anúncios: { label: 'Anúncios', color: '#3b82f6' },
@@ -155,13 +149,13 @@ export default function TrafficBudget() {
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
                 <div>
-                  <label className="block text-sm font-medium text-white/70 mb-2">Empresa do Cliente</label>
+                  <label className="block text-sm font-medium text-white/70 mb-2">Nome da empresa / cliente</label>
                   <input
                     type="text"
                     className="w-full bg-background border border-white/10 rounded-xl px-5 py-4 text-white focus:outline-none focus:border-nzila-gold transition-all duration-300 placeholder:text-white/20"
                     value={formData.empresa}
                     onChange={e => setFormData({...formData, empresa: e.target.value})}
-                    placeholder="Nome da sua empresa"
+                    placeholder="Nome da empresa / cliente"
                   />
                 </div>
                 <div>
@@ -181,6 +175,12 @@ export default function TrafficBudget() {
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                   {plataformasOpcoes.map(plat => (
                     <label key={plat} className="flex items-center space-x-3 cursor-pointer group bg-black/20 p-4 rounded-xl border border-white/5 hover:border-white/20 transition-all">
+                      <input 
+                        type="checkbox" 
+                        className="hidden" 
+                        checked={formData.plataformas.includes(plat)}
+                        onChange={() => handlePlataformaToggle(plat)} 
+                      />
                       <div className={`w-5 h-5 rounded border flex items-center justify-center transition-colors ${formData.plataformas.includes(plat) ? 'bg-nzila-gold border-nzila-gold' : 'border-white/20 group-hover:border-white/50'}`}>
                         {formData.plataformas.includes(plat) && <div className="w-2.5 h-2.5 bg-black rounded-sm" />}
                       </div>
@@ -331,107 +331,85 @@ export default function TrafficBudget() {
               </div>
             </div>
 
-            {/* Botão Gerar Orçamento */}
-            <div className="flex justify-center pt-4">
-              <button
-                onClick={handleGerarOrcamento}
-                className="w-full md:w-auto min-w-[300px] bg-nzila-gold hover:bg-nzila-gold-light text-black font-black py-5 px-10 rounded-xl transition-all duration-300 flex items-center justify-center gap-3 shadow-[0_0_40px_-10px_rgba(234,179,8,0.5)] hover:scale-105 active:scale-95 text-lg uppercase tracking-wider"
-              >
-                <Calculator size={24} />
-                Gerar Orçamento
-              </button>
-            </div>
+            {/* The Generar Orcamento button has been removed since the chart updates automatically */}
 
           </div>
 
           {/* Resumo e Gráfico Lateral (Sticky Sidebar) */}
           <div className="xl:col-span-4">
-            <AnimatePresence>
-              {orcamentoGerado ? (
-                <motion.div 
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  className="bg-[#0a0a0a] border border-nzila-gold/30 p-8 rounded-2xl shadow-2xl sticky top-32"
-                >
-                  <div className="flex items-center gap-4 mb-8 border-b border-white/10 pb-6">
-                    <div className="p-3 bg-nzila-gold/20 rounded-xl">
-                      <PieChartIcon className="text-nzila-gold" size={28} />
-                    </div>
-                    <h2 className="text-2xl font-bold text-white">Composição</h2>
+              <motion.div 
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                className="bg-[#0a0a0a] border border-nzila-gold/30 p-8 rounded-2xl shadow-2xl sticky top-32"
+              >
+                <div className="flex items-center gap-4 mb-8 border-b border-white/10 pb-6">
+                  <div className="p-3 bg-nzila-gold/20 rounded-xl">
+                    <PieChartIcon className="text-nzila-gold" size={28} />
                   </div>
-
-                  {/* Gráfico Donut Circular com Recharts */}
-                  <div className="mb-10 w-full flex justify-center">
-                    <ChartContainer config={chartConfig} className="h-[250px] w-[250px]">
-                      <PieChart>
-                        <ChartTooltip cursor={false} content={<ChartTooltipContent hideLabel />} />
-                        <Pie
-                          data={chartData}
-                          dataKey="value"
-                          nameKey="name"
-                          innerRadius={80}
-                          outerRadius={110}
-                          strokeWidth={0}
-                          paddingAngle={2}
-                        >
-                          {chartData.map((entry, index) => (
-                            <Cell key={`cell-${index}`} fill={entry.fill} />
-                          ))}
-                        </Pie>
-                      </PieChart>
-                    </ChartContainer>
-                  </div>
-
-                  {/* Legenda Dinâmica */}
-                  <div className="flex justify-between text-sm mb-10 border-t border-b border-white/5 py-4">
-                    <div className="flex items-center gap-2">
-                      <div className="w-3 h-3 rounded-full bg-[#3b82f6]" />
-                      <span className="text-white/70">Anúncios ({percentAnuncios.toFixed(0)}%)</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <div className="w-3 h-3 rounded-full bg-[#f97316]" />
-                      <span className="text-white/70">Gestão ({percentGestao.toFixed(0)}%)</span>
-                    </div>
-                  </div>
-
-                  {/* Cards de Valores */}
-                  <div className="space-y-4 mb-10">
-                    <div className="bg-white/5 p-5 rounded-xl border border-white/5">
-                      <p className="text-sm text-white/50 mb-2">Investimento em Anúncios</p>
-                      <p className="text-2xl font-bold text-[#3b82f6] tracking-tight">{formatAOA(investimentoAnuncios)}</p>
-                    </div>
-                    <div className="bg-white/5 p-5 rounded-xl border border-white/5">
-                      <p className="text-sm text-white/50 mb-2">Lucro do Gestor (Taxa 50%)</p>
-                      <p className="text-2xl font-bold text-[#f97316] tracking-tight">{formatAOA(lucroGestor)}</p>
-                    </div>
-                    <div className="bg-nzila-gold/10 p-6 rounded-xl border-2 border-nzila-gold/30 relative overflow-hidden">
-                      <div className="absolute top-0 right-0 w-32 h-32 bg-nzila-gold/20 blur-3xl rounded-full" />
-                      <p className="text-sm text-nzila-gold mb-2 font-bold uppercase tracking-wider relative z-10">Total do Cliente</p>
-                      <p className="text-4xl font-black text-white tracking-tighter relative z-10">{formatAOA(totalCliente)}</p>
-                      <p className="text-sm text-white/60 mt-3 font-medium relative z-10">{duracaoNum} dias de campanha</p>
-                    </div>
-                  </div>
-
-                  <button
-                    onClick={handleEnviarWhatsApp}
-                    className="w-full bg-[#25D366] hover:bg-[#128C7E] text-white font-bold py-5 px-6 rounded-xl transition-all duration-300 flex items-center justify-center gap-3 shadow-[0_10px_30px_-10px_rgba(37,211,102,0.5)] hover:-translate-y-1 active:translate-y-0 text-lg"
-                  >
-                    <Send size={24} />
-                    Enviar Orçamento Whatsap
-                  </button>
-                </motion.div>
-              ) : (
-                <div className="h-full flex flex-col items-center justify-center p-12 text-center border-2 border-dashed border-white/10 rounded-2xl sticky top-32 bg-card/20">
-                  <div className="w-20 h-20 bg-white/5 rounded-full flex items-center justify-center mb-6">
-                    <Calculator className="text-white/20" size={40} />
-                  </div>
-                  <h3 className="text-xl font-bold text-white mb-4">Resumo do Orçamento</h3>
-                  <p className="text-white/50 leading-relaxed">
-                    Preencha os campos de Duração e Orçamento Diário no formulário ao lado e clique em <strong className="text-nzila-gold font-bold">Gerar Orçamento</strong> para visualizar a composição financeira e enviar para o WhatsApp.
-                  </p>
+                  <h2 className="text-2xl font-bold text-white">Composição</h2>
                 </div>
-              )}
-            </AnimatePresence>
+
+                {/* Gráfico Donut Circular com Recharts */}
+                <div className="mb-10 w-full flex justify-center">
+                  <ChartContainer config={chartConfig} className="h-[250px] w-[250px]">
+                    <PieChart>
+                      {totalCliente > 0 && <ChartTooltip cursor={false} content={<ChartTooltipContent hideLabel />} />}
+                      <Pie
+                        data={chartData}
+                        dataKey="value"
+                        nameKey="name"
+                        innerRadius={80}
+                        outerRadius={110}
+                        strokeWidth={0}
+                        paddingAngle={2}
+                        isAnimationActive={true}
+                      >
+                        {chartData.map((entry, index) => (
+                          <Cell key={`cell-${index}`} fill={entry.fill} />
+                        ))}
+                      </Pie>
+                    </PieChart>
+                  </ChartContainer>
+                </div>
+
+                {/* Legenda Dinâmica */}
+                <div className="flex justify-between text-sm mb-10 border-t border-b border-white/5 py-4">
+                  <div className="flex items-center gap-2">
+                    <div className="w-3 h-3 rounded-full bg-[#3b82f6]" />
+                    <span className="text-white/70">Anúncios ({percentAnuncios.toFixed(0)}%)</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="w-3 h-3 rounded-full bg-[#f97316]" />
+                    <span className="text-white/70">Gestão ({percentGestao.toFixed(0)}%)</span>
+                  </div>
+                </div>
+
+                {/* Cards de Valores */}
+                <div className="space-y-4 mb-10">
+                  <div className="bg-white/5 p-5 rounded-xl border border-white/5">
+                    <p className="text-sm text-white/50 mb-2">Investimento em Anúncios</p>
+                    <p className="text-2xl font-bold text-[#3b82f6] tracking-tight">{formatAOA(investimentoAnuncios)}</p>
+                  </div>
+                  <div className="bg-white/5 p-5 rounded-xl border border-white/5">
+                    <p className="text-sm text-white/50 mb-2">Lucro do Gestor (Taxa 50%)</p>
+                    <p className="text-2xl font-bold text-[#f97316] tracking-tight">{formatAOA(lucroGestor)}</p>
+                  </div>
+                  <div className="bg-nzila-gold/10 p-6 rounded-xl border-2 border-nzila-gold/30 relative overflow-hidden">
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-nzila-gold/20 blur-3xl rounded-full" />
+                    <p className="text-sm text-nzila-gold mb-2 font-bold uppercase tracking-wider relative z-10">Total do Cliente</p>
+                    <p className="text-4xl font-black text-white tracking-tighter relative z-10">{formatAOA(totalCliente)}</p>
+                    <p className="text-sm text-white/60 mt-3 font-medium relative z-10">{duracaoNum} dias de campanha</p>
+                  </div>
+                </div>
+
+                <button
+                  onClick={handleEnviarWhatsApp}
+                  className="w-full bg-[#25D366] hover:bg-[#128C7E] text-white font-bold py-5 px-6 rounded-xl transition-all duration-300 flex items-center justify-center gap-3 shadow-[0_10px_30px_-10px_rgba(37,211,102,0.5)] hover:-translate-y-1 active:translate-y-0 text-lg"
+                >
+                  <Send size={24} />
+                  Enviar Orçamento Whatsap
+                </button>
+              </motion.div>
           </div>
 
         </div>

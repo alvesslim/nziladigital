@@ -8,6 +8,13 @@ interface TeamMember {
   role: string;
   bio: string;
   photo: string;
+  social?: {
+    linkedin?: string;
+    instagram?: string;
+    facebook?: string;
+    whatsapp?: string;
+    email?: string;
+  };
 }
 
 const teamMembers: TeamMember[] = [
@@ -15,8 +22,15 @@ const teamMembers: TeamMember[] = [
     id: 1,
     name: 'Orlando Correia',
     role: 'CEO & Fundador',
-    bio: 'Visionário digital com mais de 10 anos de experiência em estratégia de marca e crescimento empresarial. Lidera a Nzila Digital com foco em inovação e resultados mensuráveis para cada cliente.',
+    bio: 'Visionário digital com mais de 3 anos de experiência em estratégia de marca e crescimento empresarial. Lidera a Nzila Digital com foco em inovação e resultados mensuráveis para cada cliente.',
     photo: '/team/member1.png',
+    social: {
+      linkedin: 'https://www.linkedin.com/in/orlandojoseorreia/',
+      instagram: 'https://www.instagram.com/orlandocorreiaoficial?igsh=N3IwMHE5bHNtOW53',
+      facebook: 'https://www.facebook.com/profile.php?id=100076718228192',
+      whatsapp: 'https://wa.me/244946554601',
+      email: 'mailto:orlandojosecorreia1@outlook.com'
+    }
   },
   {
     id: 2,
@@ -258,41 +272,55 @@ export function TeamSection() {
 
                   {/* Social links */}
                   <div className="flex items-center gap-4 justify-center md:justify-start">
-                    <a
-                      href="#"
-                      className="w-11 h-11 rounded-sm bg-white/[0.03] border border-white/[0.05] flex items-center justify-center text-white/40 hover:text-nzila-gold hover:border-nzila-gold/30 transition-all duration-300"
-                      aria-label="LinkedIn"
-                    >
-                      <Linkedin size={18} />
-                    </a>
-                    <a
-                      href="#"
-                      className="w-11 h-11 rounded-sm bg-white/[0.03] border border-white/[0.05] flex items-center justify-center text-white/40 hover:text-nzila-gold hover:border-nzila-gold/30 transition-all duration-300"
-                      aria-label="Instagram"
-                    >
-                      <Instagram size={18} />
-                    </a>
-                    <a
-                      href="#"
-                      className="w-11 h-11 rounded-sm bg-white/[0.03] border border-white/[0.05] flex items-center justify-center text-white/40 hover:text-nzila-gold hover:border-nzila-gold/30 transition-all duration-300"
-                      aria-label="Facebook"
-                    >
-                      <Facebook size={18} />
-                    </a>
-                    <a
-                      href="#"
-                      className="w-11 h-11 rounded-sm bg-white/[0.03] border border-white/[0.05] flex items-center justify-center text-white/40 hover:text-nzila-gold hover:border-nzila-gold/30 transition-all duration-300"
-                      aria-label="WhatsApp"
-                    >
-                      <MessageCircle size={18} />
-                    </a>
-                    <a
-                      href="#"
-                      className="w-11 h-11 rounded-sm bg-white/[0.03] border border-white/[0.05] flex items-center justify-center text-white/40 hover:text-nzila-gold hover:border-nzila-gold/30 transition-all duration-300"
-                      aria-label="Email"
-                    >
-                      <Mail size={18} />
-                    </a>
+                    {activeMember.social?.linkedin && (
+                      <a
+                        href={activeMember.social.linkedin}
+                        target="_blank" rel="noopener noreferrer"
+                        className="w-11 h-11 rounded-sm bg-white/[0.03] border border-white/[0.05] flex items-center justify-center text-white/40 hover:text-nzila-gold hover:border-nzila-gold/30 transition-all duration-300"
+                        aria-label="LinkedIn"
+                      >
+                        <Linkedin size={18} />
+                      </a>
+                    )}
+                    {activeMember.social?.instagram && (
+                      <a
+                        href={activeMember.social.instagram}
+                        target="_blank" rel="noopener noreferrer"
+                        className="w-11 h-11 rounded-sm bg-white/[0.03] border border-white/[0.05] flex items-center justify-center text-white/40 hover:text-nzila-gold hover:border-nzila-gold/30 transition-all duration-300"
+                        aria-label="Instagram"
+                      >
+                        <Instagram size={18} />
+                      </a>
+                    )}
+                    {activeMember.social?.facebook && (
+                      <a
+                        href={activeMember.social.facebook}
+                        target="_blank" rel="noopener noreferrer"
+                        className="w-11 h-11 rounded-sm bg-white/[0.03] border border-white/[0.05] flex items-center justify-center text-white/40 hover:text-nzila-gold hover:border-nzila-gold/30 transition-all duration-300"
+                        aria-label="Facebook"
+                      >
+                        <Facebook size={18} />
+                      </a>
+                    )}
+                    {activeMember.social?.whatsapp && (
+                      <a
+                        href={activeMember.social.whatsapp}
+                        target="_blank" rel="noopener noreferrer"
+                        className="w-11 h-11 rounded-sm bg-white/[0.03] border border-white/[0.05] flex items-center justify-center text-white/40 hover:text-nzila-gold hover:border-nzila-gold/30 transition-all duration-300"
+                        aria-label="WhatsApp"
+                      >
+                        <MessageCircle size={18} />
+                      </a>
+                    )}
+                    {activeMember.social?.email && (
+                      <a
+                        href={activeMember.social.email}
+                        className="w-11 h-11 rounded-sm bg-white/[0.03] border border-white/[0.05] flex items-center justify-center text-white/40 hover:text-nzila-gold hover:border-nzila-gold/30 transition-all duration-300"
+                        aria-label="Email"
+                      >
+                        <Mail size={18} />
+                      </a>
+                    )}
                   </div>
                 </motion.div>
               </AnimatePresence>
@@ -306,7 +334,7 @@ export function TeamSection() {
                 >
                   <ChevronLeft size={20} />
                 </button>
-                
+
                 <div className="flex items-center gap-3">
                   {teamMembers.map((_, i) => (
                     <button
@@ -316,11 +344,10 @@ export function TeamSection() {
                       aria-label={`Ver membro ${i + 1}`}
                     >
                       <div
-                        className={`h-1.5 rounded-full transition-all duration-700 ease-out ${
-                          i === activeIndex
-                            ? 'w-12 bg-nzila-gold'
-                            : 'w-4 bg-white/10 group-hover:bg-white/25'
-                        }`}
+                        className={`h-1.5 rounded-full transition-all duration-700 ease-out ${i === activeIndex
+                          ? 'w-12 bg-nzila-gold'
+                          : 'w-4 bg-white/10 group-hover:bg-white/25'
+                          }`}
                       />
                     </button>
                   ))}

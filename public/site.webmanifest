@@ -1,0 +1,30 @@
+{
+  "name": "Nzila Digital",
+  "short_name": "Nzila",
+  "description": "Agência de Marketing Digital e Tecnologia de Elite. Especialistas em Web Design, Tráfego Pago e Gestão de Marca em Angola.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#020617",
+  "theme_color": "#C9A84C",
+  "orientation": "portrait-primary",
+  "lang": "pt-AO",
+  "scope": "/",
+  "categories": ["business", "education", "productivity"],
+  "icons": [
+    {
+      "src": "/favicon.png",
+      "sizes": "any",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Solicitar Orçamento",
+      "short_name": "Orçamento",
+      "description": "Solicitar orçamento de tráfego pago",
+      "url": "/orcamento-trafego",
+      "icons": [{ "src": "/favicon.png", "sizes": "any" }]
+    }
+  ]
+}

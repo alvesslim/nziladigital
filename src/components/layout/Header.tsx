@@ -58,6 +58,7 @@ export function Header() {
   return (
     <>
       <motion.header
+        role="banner"
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.5 }}
@@ -88,7 +89,7 @@ export function Header() {
           </motion.a>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-8">
+          <nav aria-label="Navegação principal" className="hidden md:flex items-center gap-8">
             {navItems.map((item) => (
               <a
                 key={item.label}

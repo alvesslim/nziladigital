@@ -1,4 +1,51 @@
+# robots.txt — Nzila Digital
+# https://nziladigital.com
+
+# === Allow all major search crawlers ===
 User-agent: *
 Allow: /
+Disallow: /api/
+Disallow: /*.json$
+Disallow: /cdn-cgi/
 
+# Sitemap location
 Sitemap: https://nziladigital.com/sitemap.xml
+
+# === Google ===
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 2
+
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Googlebot-Mobile
+Allow: /
+
+# === Bing ===
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 5
+
+# === Others ===
+User-agent: Baiduspider
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: YandexBot
+Allow: /
+
+# === Block bad bots ===
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /

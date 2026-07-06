@@ -26,7 +26,7 @@ export function Footer() {
   };
 
   return (
-    <footer className="relative bg-background pt-24 pb-12 overflow-hidden border-t border-white/5">
+    <footer role="contentinfo" className="relative bg-background pt-24 pb-12 overflow-hidden border-t border-white/5">
       {/* Background Glow */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-nzila-gold/[0.03] blur-[100px] rounded-full pointer-events-none" />
 
@@ -107,11 +107,11 @@ export function Footer() {
                 </motion.a>
               ))}
             </div>
-            <div className="pt-2 space-y-2">
+            <address className="pt-2 space-y-2 not-italic">
               <p className="text-sm text-muted-foreground">Luanda, Angola</p>
-              <p className="text-sm text-white"><span className="text-muted-foreground">Telefone:</span> +244 946 361 183</p>
-              <p className="text-sm text-muted-foreground">nziladigital@gmail.com</p>
-            </div>
+              <p className="text-sm text-white"><span className="text-muted-foreground">Telefone:</span> <a href="tel:+244946361183" className="hover:text-nzila-gold transition-colors">+244 946 361 183</a></p>
+              <p className="text-sm text-muted-foreground"><a href="mailto:nziladigital@gmail.com" className="hover:text-nzila-gold transition-colors">nziladigital@gmail.com</a></p>
+            </address>
           </div>
         </div>
 

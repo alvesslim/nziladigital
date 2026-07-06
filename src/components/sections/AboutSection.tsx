@@ -24,7 +24,7 @@ const values = [
 
 export function AboutSection() {
   return (
-    <section id="about" className="relative bg-background py-20 md:py-32 overflow-hidden">
+    <section id="about" aria-labelledby="about-heading" className="relative bg-background py-20 md:py-32 overflow-hidden">
       {/* Background Decor */}
       <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-nzila-gold/[0.03] to-transparent pointer-events-none" />
 
@@ -41,7 +41,7 @@ export function AboutSection() {
             <span className="inline-block py-1 px-4 rounded-sm bg-nzila-gold/10 border border-nzila-gold/20 text-nzila-gold text-[10px] font-bold tracking-[0.3em] uppercase mb-6">
               A Essência
             </span>
-            <h2 className="text-3xl md:text-5xl lg:text-7xl font-display font-bold text-white leading-[1.1] tracking-tight">
+            <h2 id="about-heading" className="text-3xl md:text-5xl lg:text-7xl font-display font-bold text-white leading-[1.1] tracking-tight">
               Estratégia. Execução. <br />
               <span className="text-gradient-gold">
                 Evolução Contínua.

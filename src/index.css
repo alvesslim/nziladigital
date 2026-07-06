@@ -268,4 +268,10 @@
   .custom-scrollbar::-webkit-scrollbar-thumb:hover {
     background: rgba(201, 168, 76, 0.5);
   }
+
+  /* Performance: Content Visibility for sections to skip rendering off-screen content */
+  section {
+    content-visibility: auto;
+    contain-intrinsic-size: 1px 1000px;
+  }
 }

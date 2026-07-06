@@ -57,6 +57,7 @@ export function ServicesSection() {
   return (
     <section
       id="services"
+      aria-labelledby="services-heading"
       className="relative py-32 bg-background overflow-hidden"
     >
       {/* Dynamic Background */}
@@ -73,7 +74,7 @@ export function ServicesSection() {
           <span className="text-nzila-gold font-bold tracking-[0.3em] text-[10px] uppercase mb-4 block">
             Nossa Expertise
           </span>
-          <h2 className="text-5xl md:text-7xl font-display font-bold text-white mb-6 tracking-tight">
+          <h2 id="services-heading" className="text-5xl md:text-7xl font-display font-bold text-white mb-6 tracking-tight">
             Soluções para <span className="text-gradient-gold">Escalar</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto font-light">
@@ -85,6 +86,8 @@ export function ServicesSection() {
           {services.map((service, index) => (
             <motion.div
               key={service.title}
+              role="article"
+              aria-label={`Serviço: ${service.title}`}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ margin: '-20px' }}

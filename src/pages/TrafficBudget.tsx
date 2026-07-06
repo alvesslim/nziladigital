@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { SEOHead } from '@/components/seo/SEOHead';
 import {
   Send, ArrowLeft, AlertTriangle, CheckCircle2, Info, TrendingUp,
   Minus, Zap, Target, Users, BarChart3, Shield,
@@ -456,8 +457,27 @@ export default function TrafficBudget() {
 
   const levelInfo = campaignLevel ? levelColors[campaignLevel] : null;
 
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    'itemListElement': [
+      { '@type': 'ListItem', 'position': 1, 'name': 'Início', 'item': 'https://nziladigital.com/' },
+      { '@type': 'ListItem', 'position': 2, 'name': 'Simulador de Campanha', 'item': 'https://nziladigital.com/orcamento-trafego' }
+    ]
+  };
+
   return (
+    <>
+      <SEOHead
+        title="Simulador de Orçamento para Tráfego Pago | Nzila Digital Angola"
+        description="Calcule gratuitamente o orçamento ideal para as suas campanhas de tráfego pago no Meta Ads e Google Ads em Angola. Análise estratégica em tempo real pela Nzila Digital."
+        canonical="https://nziladigital.com/orcamento-trafego"
+        ogTitle="Simulador de Campanha Grátis — Meta Ads & Google Ads em Angola"
+        ogDescription="Descubra quanto investir em tráfego pago para a sua empresa em Angola. Ferramenta gratuita da Nzila Digital com análise estratégica em tempo real."
+        jsonLd={breadcrumbJsonLd}
+      />
     <div className="min-h-screen bg-background">
+
 
       {/* ── Hero Header ─────────────────────────────────────────────────────── */}
       <div className="relative pt-12 pb-8 overflow-hidden">
@@ -922,5 +942,6 @@ export default function TrafficBudget() {
         </div>
       </div>
     </div>
+    </>
   );
 }

@@ -1,9 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset
+  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml"
+  xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+>
+
+  <!-- Homepage -->
   <url>
     <loc>https://nziladigital.com/</loc>
-    <lastmod>2026-04-28</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-07-05</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://nziladigital.com/" />
+    <xhtml:link rel="alternate" hreflang="pt-AO" href="https://nziladigital.com/" />
+    <image:image>
+      <image:loc>https://nziladigital.com/og-image.png</image:loc>
+      <image:title>Nzila Digital — Agência de Marketing Digital em Angola</image:title>
+    </image:image>
   </url>
+
+  <!-- Orçamento Tráfego Pago -->
+  <url>
+    <loc>https://nziladigital.com/orcamento-trafego</loc>
+    <lastmod>2026-07-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://nziladigital.com/orcamento-trafego" />
+    <xhtml:link rel="alternate" hreflang="pt-AO" href="https://nziladigital.com/orcamento-trafego" />
+  </url>
+
 </urlset>

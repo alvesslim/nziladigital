@@ -1,6 +1,14 @@
 {
   "rewrites": [
     {
+      "source": "/kit-leitura",
+      "destination": "https://<URL-DO-PROJETO-DE-VENDAS-AQUI>/"
+    },
+    {
+      "source": "/kit-leitura/:match*",
+      "destination": "https://<URL-DO-PROJETO-DE-VENDAS-AQUI>/:match*"
+    },
+    {
       "source": "/((?!sitemap\\.xml|robots\\.txt|_headers|site\\.webmanifest|favicon\\.png|og-image\\.png).*)",
       "destination": "/index.html"
     }

@@ -1,6 +1,6 @@
 import { useRef, useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Users, Linkedin, Mail, Instagram, Facebook, MessageCircle, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Users, Linkedin, Mail, Instagram, Facebook, MessageCircle, ChevronLeft, ChevronRight, Globe, Music } from 'lucide-react';
 
 interface TeamMember {
   id: number;
@@ -14,6 +14,8 @@ interface TeamMember {
     facebook?: string;
     whatsapp?: string;
     email?: string;
+    website?: string;
+    tiktok?: string;
   };
 }
 
@@ -35,23 +37,38 @@ const teamMembers: TeamMember[] = [
   {
     id: 2,
     name: 'Elias da Silva',
-    role: 'Diretor Criativo',
-    bio: 'Especialista em design de marca e experiência visual. Transforma conceitos abstratos em identidades visuais poderosas que conectam marcas ao seu público-alvo.',
+    role: 'Fundador, Dev Full Stack & Especialista em Transformação Digital',
+    bio: 'Programador Full Stack, designer gráfico e especialista em marketing digital. Lidera a criação de soluções tecnológicas, websites, sistemas e estratégias digitais, ajudando empresas a inovar e crescer através da tecnologia.',
     photo: '/team/member2.png',
+    social: {
+      website: 'https://eliasdasilva.it.ao',
+      linkedin: 'https://www.linkedin.com/in/elias-marcos-d-da-silva-01a765356?utm_source=share_via&utm_content=profile&utm_medium=member_android',
+
+      facebook: 'https://web.facebook.com/profile.php?id=61580622658466',
+      instagram: 'https://www.instagram.com/eliasdasilva0208?igsh=MWVpOXY1djJsZDhtaw==',
+      tiktok: 'tiktok.com/@eliasdasilva0208',
+    }
   },
   {
     id: 3,
     name: 'Eric Graça',
-    role: 'Developer Full-Stack',
-    bio: 'Engenheiro de software focado em criar soluções web de alta performance. Domina as tecnologias mais modernas para entregar produtos digitais escaláveis e robustos.',
+    role: 'Coordenador de Operações e Recursos Humanos',
+    bio: 'Empresário e especialista em gestão empresarial, desenvolvimento pessoal e coordenação de equipas. Na Nzila Digital, lidera as operações internas e os processos de Recursos Humanos, assegurando a eficiência organizacional e contribuindo para o desenvolvimento de projetos com excelência e foco em resultados.',
     photo: '/team/member3.png',
   },
   {
     id: 4,
-    name: 'Alonso dos Santos',
-    role: 'Gestora de Marketing',
-    bio: 'Estrategista de marketing digital com talento para campanhas que convertem. Especializada em tráfego pago, funis de venda e crescimento orgânico nas redes sociais.',
+    name: 'Alonso Victor',
+    role: 'Gestor de Marketing, Vendas & Especialista em Dev de Projetos',
+    bio: 'Profissional especializado em estratégias de marketing, vendas e desenvolvimento de projetos de software. Atua na criação de soluções digitais inovadoras, combinando visão estratégica e conhecimento tecnológico para impulsionar o crescimento de empresas e entregar resultados de elevado impacto.',
     photo: '/team/member4.png',
+  },
+  {
+    id: 5,
+    name: 'Tertuliano dos Santos',
+    role: 'Filmmaker & Gestor de Redes Sociais',
+    bio: 'Especialista em storytelling visual, produção audiovisual e gestão de redes sociais. Transforma ideias em conteúdos criativos e envolventes através do design, fotografia e filmmaking, fortalecendo a identidade das marcas e criando experiências memoráveis para o público.',
+    photo: '/team/member5.jpeg',
   },
 ];
 
@@ -70,6 +87,7 @@ const pyramidPositions: PyramidPosition[] = [
   { x: 0, y: -50, scale: 0.78, opacity: 0.5, zIndex: 20, blur: 1.5 },     // Back center
   { x: -160, y: -10, scale: 0.72, opacity: 0.4, zIndex: 10, blur: 2 },    // Back left
   { x: 160, y: -10, scale: 0.72, opacity: 0.4, zIndex: 10, blur: 2 },     // Back right
+  { x: 0, y: -90, scale: 0.65, opacity: 0, zIndex: 5, blur: 3 },          // Far back (hidden)
 ];
 
 const mobilePyramidPositions: PyramidPosition[] = [
@@ -77,6 +95,7 @@ const mobilePyramidPositions: PyramidPosition[] = [
   { x: 0, y: -35, scale: 0.7, opacity: 0.45, zIndex: 20, blur: 1.5 },
   { x: -75, y: -15, scale: 0.65, opacity: 0.35, zIndex: 10, blur: 2 },
   { x: 75, y: -15, scale: 0.65, opacity: 0.35, zIndex: 10, blur: 2 },
+  { x: 0, y: -60, scale: 0.55, opacity: 0, zIndex: 5, blur: 3 },
 ];
 
 export function TeamSection() {
@@ -319,6 +338,26 @@ export function TeamSection() {
                         aria-label="Email"
                       >
                         <Mail size={18} />
+                      </a>
+                    )}
+                    {activeMember.social?.website && (
+                      <a
+                        href={activeMember.social.website}
+                        target="_blank" rel="noopener noreferrer"
+                        className="w-11 h-11 rounded-sm bg-white/[0.03] border border-white/[0.05] flex items-center justify-center text-white/40 hover:text-nzila-gold hover:border-nzila-gold/30 transition-all duration-300"
+                        aria-label="Website"
+                      >
+                        <Globe size={18} />
+                      </a>
+                    )}
+                    {activeMember.social?.tiktok && (
+                      <a
+                        href={activeMember.social.tiktok}
+                        target="_blank" rel="noopener noreferrer"
+                        className="w-11 h-11 rounded-sm bg-white/[0.03] border border-white/[0.05] flex items-center justify-center text-white/40 hover:text-nzila-gold hover:border-nzila-gold/30 transition-all duration-300"
+                        aria-label="TikTok"
+                      >
+                        <Music size={18} />
                       </a>
                     )}
                   </div>

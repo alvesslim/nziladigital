@@ -1,72 +1,186 @@
-# Guia de Manutenção e Atualização - Nzila Digital
+# Guia de Manutenção e Atualização — Nzila Digital
 
-Este documento detalha o fluxo de trabalho profissional para realizar futuras atualizações e manutenções no site da Nzila Digital. Seguir este fluxo garante que você nunca perca suas alterações e que o site em produção seja atualizado de forma segura.
-
----
-
-## 1. Fazer Alterações Locais (Ambiente de Desenvolvimento)
-
-Antes de alterar o site que está no ar, você deve sempre testar no seu computador.
-
-1. **Abrir o Projeto:** Abra a pasta do projeto (`nziladigital-main`) no seu editor de código (como o VS Code).
-2. **Rodar o Servidor Local:** Abra o terminal integrado do editor e digite:
-   ```bash
-   npm run dev
-   ```
-3. **Desenvolver:** Acesse `http://localhost:8080` (ou a porta que o terminal indicar) no seu navegador. Faça as alterações nos arquivos (textos, componentes React, CSS). O site local será atualizado automaticamente assim que você salvar os arquivos.
+> **Para qualquer pessoa (colega, IA ou developer) que precisar de actualizar o site ou a página de vendas.**
+> Segue este documento passo a passo. Não improvises.
 
 ---
 
-## 2. Salvar o Código na Nuvem (Controle de Versão - GitHub)
+## 🗂️ Estrutura do Projecto
 
-Sempre que terminar uma nova funcionalidade ou alteração, é fundamental enviar o código para o GitHub. Isso serve como um "ponto de restauração" seguro.
+```
+nziladigital/                        ← Raiz do projecto (Site Institucional)
+├── src/                             ← Código fonte do site Nzila Digital
+├── public/                          ← Assets estáticos (favicon, imagens, .htaccess)
+├── apps/
+│   └── joy-of-reading-hub/          ← Página de Vendas do E-book (Kit de Leitura)
+│       ├── src/
+│       └── public/
+├── MANUTENCAO_E_ATUALIZACAO.md      ← Este documento
+├── site_principal.zip               ← Build final do site (gerado localmente)
+└── apps/joy-of-reading-hub/
+    └── pagina_vendas.zip            ← Build final da página de vendas (gerado localmente)
+```
 
-1. **Adicionar as mudanças:** No terminal, pare o servidor (Ctrl + C) ou abra uma nova aba de terminal e digite:
-   ```bash
-   git add .
-   ```
-2. **Criar um pacote com uma mensagem (Commit):** Explique de forma simples o que foi alterado. Exemplo:
-   ```bash
-   git commit -m "Atualizei o número do WhatsApp e adicionei nova foto da equipa"
-   ```
-3. **Enviar para o GitHub (Push):**
-   ```bash
-   git push origin main
-   ```
-   *Pronto! Seu código fonte mais recente está guardado com segurança na internet.*
+### Domínios e Rotas
 
----
-
-## 3. Preparar a Nova Versão para a Angoweb (Build)
-
-O código que usamos para desenvolver não é o mesmo que vai para a Angoweb. Precisamos empacotar e otimizar o site.
-
-1. **Gerar a pasta `dist`:** No terminal, execute:
-   ```bash
-   npm run build
-   ```
-   Isso criará uma pasta chamada `dist` com a versão final super leve e rápida do seu site.
-
-2. **Compactar a pasta:** 
-   Para facilitar o envio para a Angoweb, compacte o conteúdo que está **dentro** da pasta `dist` (não a pasta em si, mas os arquivos dentro dela).
-   - *Via Terminal (PowerShell no Windows):*
-     ```powershell
-     Compress-Archive -Path dist\* -DestinationPath site_atualizado.zip -Force
-     ```
-   - *Ou Manualmente:* Vá até a pasta `dist`, selecione todos os arquivos lá dentro (incluindo o `.htaccess`), clique com o botão direito e escolha "Compactar para arquivo ZIP".
+| Projecto | URL em Produção | Pasta no Servidor |
+|---|---|---|
+| Site Nzila Digital | `nziladigital.com.ao` | `public_html/` |
+| Página de Vendas (e-book) | `nziladigital.com.ao/kit-leitura` | `public_html/kit-leitura/` |
+| Calculadora de Tráfego | `nziladigital.com.ao/orcamento-trafego` | *(rota interna do site principal)* |
 
 ---
 
-## 4. Atualizar o Site na Angoweb (Deploy)
+## 1. Servidor de Desenvolvimento Local
 
-Agora é hora de colocar a nova versão no ar para os clientes verem.
+Antes de fazer qualquer alteração, testa sempre primeiro no teu computador.
 
-1. Acesse o painel **cPanel** da Angoweb.
-2. Navegue até o **Gerenciador de Ficheiros** (File Manager) e abra a pasta **`public_html`**.
-3. **Opcional (Backup Rápido):** Se quiser garantir a segurança, selecione todos os arquivos atuais, compacte-os e baixe um backup antes de apagar.
-4. **Limpar a pasta:** Apague os arquivos antigos da versão anterior dentro da pasta `public_html` (apenas tenha cuidado para não apagar pastas especiais de sistema da Angoweb, geralmente arquivos com nome muito estranho ou pastas chamadas `.well-known` podem ficar). Mas apague as pastas `assets` e o arquivo `index.html` antigos.
-5. **Fazer o Upload:** Clique no botão **Carregar** (Upload) e envie o ficheiro `site_atualizado.zip` que você gerou no Passo 3.
-6. **Extrair:** Clique com o botão direito no `site_atualizado.zip` lá no cPanel e clique em **Extrair** (Extract).
-7. **Limpeza:** Pode apagar o ficheiro `.zip` do cPanel para poupar espaço.
+### Site Principal (Nzila Digital)
+```bash
+# Na raiz do projecto
+npm run dev
+# Acede em: http://localhost:8080
+```
 
-🎉 **Concluído!** Recarregue o site `nziladigital.com.ao` no seu navegador (talvez seja necessário limpar o cache apertando `Ctrl + F5`) e a nova versão estará no ar.
+### Página de Vendas (Kit de Leitura)
+```bash
+# Na pasta da página de vendas
+cd apps/joy-of-reading-hub
+npm run dev
+# Acede em: http://localhost:8081
+```
+
+> 💡 Podes correr os dois ao mesmo tempo em terminais separados.
+
+---
+
+## 2. Guardar Alterações no GitHub
+
+Sempre que terminares uma alteração, guarda no GitHub. Isto serve de "ponto de restauração".
+
+```bash
+# Na raiz do projecto (guarda tudo — site + página de vendas)
+git add .
+git commit -m "Descreve aqui o que alteraste. Ex: Actualizei preço do e-book"
+git push origin main
+```
+
+> ⚠️ O repositório é: `https://github.com/alvesslim/nziladigital.git`
+
+---
+
+## 3. Gerar os Builds para a Angoweb
+
+O código de desenvolvimento **não vai directamente** para o servidor. Precisas de o compilar primeiro.
+
+### 3.1 — Build do Site Principal
+
+```bash
+# Na raiz do projecto
+npm run build
+```
+Isto gera a pasta `dist/` com o site optimizado.
+
+### 3.2 — Build da Página de Vendas
+
+```bash
+# Na pasta da página de vendas
+cd apps/joy-of-reading-hub
+npm run build
+```
+Isto gera a pasta `apps/joy-of-reading-hub/dist/` com a página de vendas optimizada.
+
+---
+
+## 4. Criar os ZIPs para Upload
+
+Após os dois builds estarem concluídos, cria os ficheiros ZIP.
+
+### Opção A — Via PowerShell (recomendado)
+
+```powershell
+# ─── Executar na raiz do projecto ───────────────────────────────────────────
+
+# 1. Copiar o build da página de vendas para dentro do dist/ do site principal
+$root = "."
+$joyDist = "apps\joy-of-reading-hub\dist"
+$kitTarget = "dist\kit-leitura"
+
+if (Test-Path $kitTarget) { Remove-Item $kitTarget -Recurse -Force }
+Copy-Item -Path $joyDist -Destination $kitTarget -Recurse -Force
+
+# 2. Gerar site_principal.zip (site + página de vendas embutida em kit-leitura/)
+Compress-Archive -Path "dist\*" -DestinationPath "site_principal.zip" -Force
+
+# 3. Gerar pagina_vendas.zip (só a página de vendas, para actualizações isoladas)
+Compress-Archive -Path "apps\joy-of-reading-hub\dist\*" -DestinationPath "apps\joy-of-reading-hub\pagina_vendas.zip" -Force
+
+Write-Host "✅ ZIPs prontos!"
+Write-Host "📦 site_principal.zip: $([Math]::Round((Get-Item site_principal.zip).Length / 1MB, 2)) MB"
+Write-Host "📦 pagina_vendas.zip:  $([Math]::Round((Get-Item apps\joy-of-reading-hub\pagina_vendas.zip).Length / 1MB, 2)) MB"
+```
+
+### Opção B — Cheats Rápidos (por situação)
+
+| Situação | O que fazer |
+|---|---|
+| Actualizei **só o site principal** | Build `npm run build` na raiz → re-embalar só `site_principal.zip` |
+| Actualizei **só a página de vendas** | Build na pasta `joy-of-reading-hub` → re-embalar `pagina_vendas.zip` |
+| Actualizei **ambos** | Builds nos dois projectos → gerar ambos os ZIPs com o script acima |
+
+---
+
+## 5. Fazer o Deploy na Angoweb
+
+### 5.1 — Actualizar o Site Completo (site + página de vendas)
+
+1. Abre o **cPanel da Angoweb**
+2. Vai ao **Gerenciador de Ficheiros → `public_html/`**
+3. **(Opcional — Backup)** Selecciona todos os ficheiros, compacta e faz download antes de apagar
+4. **Apaga** os ficheiros antigos:
+   - Pasta `assets/`
+   - Pasta `kit-leitura/`
+   - Ficheiro `index.html`
+   - *(Não apagues: `.well-known/`, ficheiros de sistema da Angoweb)*
+5. Clica em **Carregar (Upload)** → envia o `site_principal.zip`
+6. Clica com o botão direito no ZIP → **Extrair (Extract)**
+7. Apaga o `.zip` após extracção
+
+### 5.2 — Actualizar Só a Página de Vendas (mais rápido)
+
+1. **cPanel → Gerenciador de Ficheiros → `public_html/kit-leitura/`**
+2. Apaga o conteúdo antigo da pasta `kit-leitura/`
+3. Carrega o `pagina_vendas.zip` **dentro** da pasta `kit-leitura/`
+4. Extrai → apaga o `.zip`
+
+---
+
+## 6. Verificação Final
+
+Após o deploy, confirma sempre:
+
+- [ ] `nziladigital.com.ao` → Site principal carrega
+- [ ] `nziladigital.com.ao/kit-leitura` → Página de vendas carrega
+- [ ] `nziladigital.com.ao/orcamento-trafego` → Calculadora de tráfego carrega
+- [ ] Imagens e fontes a carregar correctamente
+- [ ] WhatsApp e links de redes sociais a funcionar
+
+> 💡 Se o site não actualizar, limpa o cache do browser com `Ctrl + F5` (Windows) ou `Cmd + Shift + R` (Mac).
+
+---
+
+## 7. Referências Rápidas
+
+| Item | Valor |
+|---|---|
+| Repositório GitHub | `https://github.com/alvesslim/nziladigital.git` |
+| Domínio produção | `nziladigital.com.ao` |
+| Servidor | Angoweb (cPanel) |
+| Dev site principal | `http://localhost:8080` |
+| Dev página de vendas | `http://localhost:8081` |
+| Stack site principal | React 18 + Vite + TailwindCSS |
+| Stack página de vendas | React 19 + Vite + TailwindCSS v4 |
+
+---
+
+*Documento mantido pela equipa Nzila Digital. Última actualização: Julho 2026.*

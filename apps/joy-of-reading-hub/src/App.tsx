@@ -72,6 +72,11 @@ function Hero() {
           <div className="mt-5 md:mt-7 flex flex-col sm:flex-row gap-3 sm:items-center">
             <a
               href="#oferta"
+              onClick={(e) => {
+                if (typeof (window as any).fbq === 'function') {
+                  (window as any).fbq('trackCustom', 'ClickCTA');
+                }
+              }}
               className="inline-flex items-center justify-center gap-2 rounded-full px-6 py-3.5 md:px-8 md:py-4 font-extrabold text-primary-foreground text-sm md:text-base whitespace-nowrap shadow-[0_20px_60px_-20px_oklch(0.44_0.11_152/0.55)] hover:-translate-y-0.5 transition-transform"
               style={{
                 background:
@@ -465,7 +470,6 @@ const CHATS: Chat[] = [
     avatarColor: "none",
     status: "há 5 min",
     censorVariant: 2,
-    photo: `${import.meta.env.BASE_URL}foto_de_perfil/foto4.jpg`,
     msgs: [
       { from: "them", text: "Irei perder pouco tempo em sala com esses conteúdos.", time: "8:35 da noite" },
       { from: "them", text: "E é mais prático para eles entenderem ❤️ 🤱", time: "8:35 da noite" },
@@ -503,7 +507,6 @@ const CHATS: Chat[] = [
     avatarColor: "none",
     status: "há 1 h",
     censorVariant: 4,
-    photo: `${import.meta.env.BASE_URL}foto_de_perfil/foto7.jpg`,
     msgs: [
       { from: "them", text: "Comprei para a minha filha de 5 anos 🥰", time: "19:00" },
       { from: "them", text: "Ela ficou fascinada pelas páginas de grafismo!!", time: "19:01" },
@@ -606,8 +609,8 @@ function CensoredNumber({ number, variant = 1 }: { number: string; variant?: num
   ];
 
   return (
-    <div className="relative inline-block leading-tight">
-      <span className="font-semibold text-white text-[14px]">{number}</span>
+    <div className="relative inline-block leading-tight whitespace-nowrap max-w-full">
+      <span className="font-semibold text-white text-[14px] truncate block">{number}</span>
       <svg
         className="absolute inset-0 w-full h-full pointer-events-none opacity-100"
         viewBox="0 0 100 20"
@@ -797,9 +800,28 @@ function Offer() {
       script.async = true;
       document.body.appendChild(script);
     }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          if (typeof (window as any).fbq === 'function') {
+            (window as any).fbq('track', 'ViewContent');
+          }
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.1 }
+    );
+    const el = document.getElementById("oferta");
+    if (el) observer.observe(el);
+
+    return () => observer.disconnect();
   }, []);
 
   const handleEssencialClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (typeof (window as any).fbq === 'function') {
+      (window as any).fbq('track', 'InitiateCheckout');
+    }
     const standerContainer = document.querySelector('.stander-checkout[data-product="59d12f7f-51c0-4cd4-bfe3-9a64fed52e93"]');
     if (standerContainer) {
       const standerBtn = standerContainer.querySelector('button, a') || standerContainer;
@@ -811,6 +833,9 @@ function Offer() {
   };
 
   const handlePremiumClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (typeof (window as any).fbq === 'function') {
+      (window as any).fbq('track', 'InitiateCheckout');
+    }
     const standerContainer = document.querySelector('.stander-checkout[data-product="c6c54990-79a4-4dec-8621-ee69994edaa4"]');
     if (standerContainer) {
       const standerBtn = standerContainer.querySelector('button, a') || standerContainer;
@@ -840,6 +865,18 @@ function Offer() {
         <div
           className="stander-checkout"
           data-product="c6c54990-79a4-4dec-8621-ee69994edaa4"
+          data-mode="modal"
+          data-theme="light"
+          data-primary="#0a1744"
+          data-button-color="#0a1744"
+          data-button-text="Comprar agora"
+          data-radius="12"
+          data-lang="pt"
+        ></div>
+        {/* Discount Checkout (Exit Intent) */}
+        <div
+          className="stander-checkout"
+          data-product="8e379baa-cd5b-4876-b4e9-747b7d233a5b"
           data-mode="modal"
           data-theme="light"
           data-primary="#0a1744"
@@ -1110,6 +1147,11 @@ function FinalCTA() {
         </p>
         <a
           href="#oferta"
+          onClick={(e) => {
+            if (typeof (window as any).fbq === 'function') {
+              (window as any).fbq('trackCustom', 'ClickCTA');
+            }
+          }}
           className="mt-8 inline-flex items-center justify-center gap-2 rounded-full px-8 py-4 md:px-10 md:py-5 font-black text-base md:text-lg text-primary-foreground shadow-[0_25px_70px_-25px_oklch(0.44_0.11_152/0.7)] hover:-translate-y-0.5 transition-transform"
           style={{
             background:
@@ -1158,6 +1200,11 @@ function Bonus() {
         <div className="mt-14 max-w-3xl mx-auto text-center">
           <a
             href="#oferta"
+            onClick={(e) => {
+              if (typeof (window as any).fbq === 'function') {
+                (window as any).fbq('trackCustom', 'ClickCTA');
+              }
+            }}
             className="inline-block w-full bg-red-600 text-white font-black text-center py-3.5 px-4 rounded-full text-base sm:text-xl shadow-[0_15px_40px_-10px_rgba(220,38,38,0.6)] hover:bg-red-700 hover:-translate-y-1 transition-all"
           >
             ⏰ Estes bónus desaparecem quando a oferta fechar!
@@ -1239,7 +1286,7 @@ function BonusModal() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setVisible(true);
-    }, 2000);
+    }, 45000); // 45 seconds delay to appear more natural
     return () => clearTimeout(timer);
   }, []);
 
@@ -1340,12 +1387,16 @@ function ExitIntentModal() {
   }, [visible]);
 
   const handleDiscountClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (typeof (window as any).fbq === 'function') {
+      (window as any).fbq('track', 'InitiateCheckout');
+    }
     const standerContainer = document.querySelector('.stander-checkout[data-product="8e379baa-cd5b-4876-b4e9-747b7d233a5b"]');
     if (standerContainer) {
       const standerBtn = standerContainer.querySelector('button, a') || standerContainer;
       if (standerBtn) {
         e.preventDefault();
         (standerBtn as HTMLElement).click();
+        setClosed(true);
       } else {
         setClosed(true);
       }
@@ -1363,20 +1414,6 @@ function ExitIntentModal() {
   return (
     <div className="fixed inset-0 z-[120] flex items-center justify-center bg-black/65 px-4 backdrop-blur-sm">
       <div className="relative bg-white rounded-2xl max-w-xs w-full shadow-2xl overflow-hidden">
-        {/* Hidden Stander Checkout Container for Discount Offer */}
-        <div style={{ display: "none" }} aria-hidden="true">
-          <div
-            className="stander-checkout"
-            data-product="8e379baa-cd5b-4876-b4e9-747b7d233a5b"
-            data-mode="modal"
-            data-theme="light"
-            data-primary="#0a1744"
-            data-button-color="#0a1744"
-            data-button-text="Comprar agora"
-            data-radius="12"
-            data-lang="pt"
-          ></div>
-        </div>
 
         {/* Header strip */}
         <div
@@ -1464,6 +1501,29 @@ function ExitIntentModal() {
   );
 }
 
+function WhatsAppButton() {
+  const handleClick = () => {
+    if (typeof (window as any).fbq === 'function') {
+      (window as any).fbq('track', 'Contact');
+    }
+  };
+
+  return (
+    <a
+      href="https://wa.me/244946554601?text=Olá!%20Tenho%20uma%20dúvida%20sobre%20o%20Kit%20Alfabetização%20Divertida."
+      target="_blank"
+      rel="noopener noreferrer"
+      onClick={handleClick}
+      className="fixed bottom-4 right-4 z-[100] flex items-center justify-center h-14 w-14 rounded-full bg-[#25D366] text-white shadow-lg hover:scale-110 hover:shadow-xl transition-all duration-300"
+      aria-label="Falar no WhatsApp"
+    >
+      <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M12 2C6.48 2 2 6.48 2 12c0 2.17.7 4.19 1.94 5.83L2.53 22l4.38-1.15A9.953 9.953 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm5.85 14.15c-.24.68-1.38 1.25-1.95 1.34-.52.09-1.21.14-3.41-.78-2.65-1.1-4.35-3.83-4.48-4.01-.13-.18-1.07-1.42-1.07-2.71 0-1.29.67-1.93.91-2.18.24-.24.52-.3.7-.3h.49c.21 0 .44-.06.63.4.22.52.74 1.81.8 1.95.07.13.11.28.02.46-.09.18-.13.3-.26.43-.13.13-.27.3-.39.42-.11.12-.24.25-.1.5.13.24.59 1 1.27 1.6 .88.78 1.63 1.02 1.88 1.13.24.11.39.09.53-.07.15-.17.65-.75.82-1.01.17-.26.35-.22.57-.14.22.09 1.4.66 1.64.78.24.12.4.18.46.28.06.1.06.58-.18 1.26z" />
+      </svg>
+    </a>
+  );
+}
+
 export default function App() {
   // Always start at the very top of the page, regardless of browser scroll restoration
   useEffect(() => {
@@ -1496,6 +1556,7 @@ export default function App() {
       <SalesNotification />
       <BonusModal />
       <ExitIntentModal />
+      <WhatsAppButton />
     </main>
   );
 }

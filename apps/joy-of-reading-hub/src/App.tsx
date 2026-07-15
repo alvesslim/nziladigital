@@ -433,9 +433,9 @@ const CHATS: Chat[] = [
     status: "online",
     photo: `${import.meta.env.BASE_URL}foto_de_perfil/foto1.jpg`,
     msgs: [
-      { from: "them", text: "Apaixonada, profe 😍", time: "18:48 da tarde" },
-      { from: "them", text: "Simplesmente, tudo !!!!!", time: "18:48 da tarde" },
-      { from: "me", text: "Que bom amiga que gostou 😍😍", time: "18:48 da tarde" },
+      { from: "them", text: "Apaixonada, profe 😍", time: "18:48" },
+      { from: "them", text: "Simplesmente, tudo !!!!!", time: "18:48" },
+      { from: "me", text: "Que bom amiga que gostou 😍😍", time: "18:48" },
     ],
   },
   {
@@ -446,10 +446,10 @@ const CHATS: Chat[] = [
     censorVariant: 1,
     photo: `${import.meta.env.BASE_URL}foto_de_perfil/foto2.jpg`,
     msgs: [
-      { from: "them", text: "Meu Deus estou encantada com esse material.. 👏👏😍😍", time: "8:10 da manhã" },
-      { from: "me", text: "Que bom meu bem❤️❤️❤️", time: "8:10 da manhã" },
-      { from: "me", text: "Fico muito feliz 😊", time: "8:10 da manhã" },
-      { from: "them", text: "Ainda estou vendo... Os que já vi estou apaixonada 😍", time: "8:11 da manhã" },
+      { from: "them", text: "Meu Deus estou encantada com esse material.. 👏👏😍😍", time: "8:10" },
+      { from: "me", text: "Que bom meu bem❤️❤️❤️", time: "8:10" },
+      { from: "me", text: "Fico muito feliz 😊", time: "8:10" },
+      { from: "them", text: "Ainda estou vendo... Os que já vi estou apaixonada 😍", time: "8:11" },
     ],
   },
   {
@@ -459,9 +459,9 @@ const CHATS: Chat[] = [
     status: "online",
     photo: `${import.meta.env.BASE_URL}foto_de_perfil/foto3.jpg`,
     msgs: [
-      { from: "them", text: "Obrigada, profe", time: "8:34 da noite" },
-      { from: "them", text: "Amei o conteúdo 😍", time: "8:34 da noite" },
-      { from: "me", text: "Eu que agradeço amiga 🥰🥰", time: "8:35 da noite" },
+      { from: "them", text: "Obrigada, profe", time: "8:34" },
+      { from: "them", text: "Amei o conteúdo 😍", time: "8:34" },
+      { from: "me", text: "Eu que agradeço amiga 🥰🥰", time: "8:35" },
     ],
   },
   {
@@ -471,9 +471,9 @@ const CHATS: Chat[] = [
     status: "há 5 min",
     censorVariant: 2,
     msgs: [
-      { from: "them", text: "Irei perder pouco tempo em sala com esses conteúdos.", time: "8:35 da noite" },
-      { from: "them", text: "E é mais prático para eles entenderem ❤️ 🤱", time: "8:35 da noite" },
-      { from: "me", text: "Fico muito feliz em ouvir isso! 🙏", time: "8:36 da noite" },
+      { from: "them", text: "Irei perder pouco tempo em sala com esses conteúdos.", time: "8:35" },
+      { from: "them", text: "E é mais prático para eles entenderem ❤️ 🤱", time: "8:35" },
+      { from: "me", text: "Fico muito feliz em ouvir isso! 🙏", time: "8:36" },
     ],
   },
   {
@@ -484,9 +484,9 @@ const CHATS: Chat[] = [
     censorVariant: 3,
     photo: `${import.meta.env.BASE_URL}foto_de_perfil/foto5.jpg`,
     msgs: [
-      { from: "them", text: "O meu filho leu a primeira frase sozinho hoje! 😭🙌", time: "10:11 da manhã" },
-      { from: "them", text: "Obrigada pelo material! Que bom meu bem 😍😍", time: "10:12 da manhã" },
-      { from: "me", text: "Que notícia maravilhosa! Parabéns! 🌟", time: "10:14 da manhã" },
+      { from: "them", text: "O meu filho leu a primeira frase sozinho hoje! 😭🙌", time: "10:11" },
+      { from: "them", text: "Obrigada pelo material! Que bom meu bem 😍😍", time: "10:12" },
+      { from: "me", text: "Que notícia maravilhosa! Parabéns! 🌟", time: "10:14" },
     ],
   },
   {
@@ -496,9 +496,9 @@ const CHATS: Chat[] = [
     status: "online",
     photo: `${import.meta.env.BASE_URL}foto_de_perfil/foto6.jpg`,
     msgs: [
-      { from: "them", text: "Recomendei para o grupo das mães da escola 💬", time: "9:22 da manhã" },
-      { from: "me", text: "Muito obrigada, Beatriz! 🙏", time: "9:23 da manhã" },
-      { from: "them", text: "Merece muito 👏👏 excelente material!", time: "9:23 da manhã" },
+      { from: "them", text: "Recomendei para o grupo das mães da escola 💬", time: "9:22" },
+      { from: "me", text: "Muito obrigada, Beatriz! 🙏", time: "9:23" },
+      { from: "them", text: "Merece muito 👏👏 excelente material!", time: "9:23" },
     ],
   },
   {

@@ -55,6 +55,13 @@ const teamMembers: TeamMember[] = [
     role: 'Coordenador de Operações e Recursos Humanos',
     bio: 'Empresário e especialista em gestão empresarial, desenvolvimento pessoal e coordenação de equipas. Na Nzila Digital, lidera as operações internas e os processos de Recursos Humanos, assegurando a eficiência organizacional e contribuindo para o desenvolvimento de projetos com excelência e foco em resultados.',
     photo: '/team/member3.png',
+    social: {
+      instagram: 'https://www.instagram.com/ericgraca2?igsh=MTBtdXIyMHBnbXQ3bQ==',
+      facebook: 'https://www.facebook.com/share/1D65dKicDD/',
+      tiktok: 'https://www.tiktok.com/@eric.graca?_r=1&_t=ZS-97yiItERZn2',
+      whatsapp: 'https://wa.me/244938408441',
+      email: 'ericgraca775@gmail.com'
+    }
   },
   {
     id: 4,
@@ -62,6 +69,11 @@ const teamMembers: TeamMember[] = [
     role: 'Gestor de Marketing, Vendas & Especialista em Dev de Projetos',
     bio: 'Profissional especializado em estratégias de marketing, vendas e desenvolvimento de projetos de software. Atua na criação de soluções digitais inovadoras, combinando visão estratégica e conhecimento tecnológico para impulsionar o crescimento de empresas e entregar resultados de elevado impacto.',
     photo: '/team/member4.png',
+    social: {
+      instagram: 'https://www.instagram.com/iam_alonso.9/?utm_source=ig_web_button_share_sheet',
+      linkedin: 'https://www.linkedin.com/in/alonso-dos-santos-8598b5200/',
+      whatsapp: 'https://wa.me/244923410001'
+    }
   },
   {
     id: 5,
@@ -69,6 +81,10 @@ const teamMembers: TeamMember[] = [
     role: 'Filmmaker & Gestor de Redes Sociais',
     bio: 'Especialista em storytelling visual, produção audiovisual e gestão de redes sociais. Transforma ideias em conteúdos criativos e envolventes através do design, fotografia e filmmaking, fortalecendo a identidade das marcas e criando experiências memoráveis para o público.',
     photo: '/team/member5.jpeg',
+    social: {
+      instagram: 'https://www.instagram.com/thestoryteller.244?igsh=MTM2OWVkZG4zZXh4NQ==',
+      whatsapp: 'https://wa.me/244931018933'
+    }
   },
 ];
 
